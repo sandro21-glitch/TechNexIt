@@ -2,17 +2,18 @@
 import { BiSolidUser } from "react-icons/bi";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { FiLogOut } from "react-icons/fi";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import UserOptions from "../features/auth/userOptions";
 import SmallLoader from "../ui/SmallLoader";
 import { toast } from "react-hot-toast";
+import { userSignOut } from "../features/auth/authSlice";
 const AuthenticatedUser = ({ setIsOpenAuth }) => {
   // const { cart } = useSelector((store) => store.cart);
 
   const { user } = useSelector((store) => store.auth);
   const { isLoading } = useSelector((store) => store.auth);
   const { error } = useSelector((store) => store.auth);
+  const dispatch = useDispatch();
   if (isLoading) {
     return <SmallLoader />;
   }
@@ -51,7 +52,7 @@ const AuthenticatedUser = ({ setIsOpenAuth }) => {
           <p className="font-bold text-black">
             <FiLogOut className="font-extrabold text-black" />
           </p>
-          <p>გამოსვლა</p>
+          <button onClick={() => dispatch(userSignOut())}>გამოსვლა</button>
         </li>
       )}
     </ul>
