@@ -20,7 +20,7 @@ const SimilarProducts = ({ singleItem }) => {
     return <Error />;
   }
   if (isLoading) {
-    return <Loading />;
+    return <p>Loading...</p>;
   }
 
   return (

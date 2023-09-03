@@ -11,7 +11,7 @@ const PcDesctiption = ({ singleItem }) => {
   });
 
   if (isLoading) {
-    return <Loading />;
+    return <p>Loading...</p>;
   }
   if (error) {
     return <Error />;
