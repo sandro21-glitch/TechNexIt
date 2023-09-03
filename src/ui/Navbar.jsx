@@ -9,11 +9,7 @@ import { BsFillBasket2Fill } from "react-icons/bs";
 const Navbar = ({ setIsOpenAuth }) => {
   const [isOpen, setOpen] = useState(false);
   const { cart } = useSelector((store) => store.cart);
-  // const handleAuthPage = (id) => {
-  //   if (id === 6) {
-  //     setIsOpenAuth((prevState) => !prevState);
-  //   }
-  // };
+
 
   return (
     <header className="section-center font-rexFontLight">
