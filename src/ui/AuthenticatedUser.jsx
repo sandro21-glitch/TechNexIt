@@ -22,7 +22,7 @@ const AuthenticatedUser = ({ setIsOpenAuth }) => {
   }
 
   return (
-    <ul className="flex items-end gap-5 md:mt-2 md:justify-between justify-start lg:justify-normal">
+    <ul className="flex items-end gap-5 md:mt-2 justify-between lg:justify-normal">
       {!user && (
         <li
           onClick={() => setIsOpenAuth(true)}
