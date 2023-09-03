@@ -18,10 +18,6 @@ const UserOptions = () => {
         <FaAngleDoubleRight />
         <span className="mb-0">შეკვეთები</span>
       </li>
-      <li className="text-[.9rem] flex items-center gap-1 py-2 pl-2 hover:bg-gray-400">
-        <FaAngleDoubleRight />
-        <span className="mb-0">პირადი ინფორმაცია</span>
-      </li>
     </ul>
   );
 };
