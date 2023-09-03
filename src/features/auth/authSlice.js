@@ -1,5 +1,39 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import supabase from "../../service";
+
+//get user from session
+export const getCurrentUser = createAsyncThunk(
+  "user/authorizeCurrUser",
+  async (_, { dispatch }) => {
+    const { data: session } = await supabase.auth.getSession();
+    if (!session.session) return null;
+
+    const { data: user, error } = await supabase.auth.getUser();
+
+    if (error) throw new Error(error.message);
+    if (user) dispatch(setUser(user));
+  }
+);
+
+//user signout
+export const userSignOut = createAsyncThunk(
+  "user/signOut",
+  async (_, { dispatch }) => {
+    try {
+      dispatch(setLoading(true)); 
+      const { data, error } = await supabase.auth.signOut();
+      if (error) {
+        dispatch(setError(error));
+        throw new Error(error.message);
+      }
+      dispatch(setUser(null));
+      return data;
+    } finally {
+      dispatch(setLoading(false)); 
+    }
+  }
+);
+
 const initialState = {
   user: null,
   error: null,
@@ -35,7 +69,7 @@ export const signIn =
   ({ email, password }) =>
   async (dispatch) => {
     try {
-      dispatch(setLoading(true)); // Dispatch the setLoading action
+      dispatch(setLoading(true));
 
       const { data: user, error } = await supabase.auth.signInWithPassword({
         email,
