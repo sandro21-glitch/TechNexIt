@@ -13,8 +13,10 @@ import Error from "./ui/Error";
 import Cart from "./pages/Cart";
 import FixedCart from "./ui/FixedCart";
 import UserAuth from "./features/auth/UserAuth";
+import Order from "./pages/Order";
 import { useDispatch } from "react-redux";
 import { getCurrentUser } from "./features/auth/authSlice";
+import ProtectedRoute from "./ui/ProtectedRoute";
 
 function App() {
   const [isOpenAuth, setIsOpenAuth] = useState(false);
@@ -43,6 +45,14 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/:category/:id" element={<SingleProduct />} />
             <Route path="/cart" element={<Cart />} />
+            <Route
+              path="/order"
+              element={
+                <ProtectedRoute>
+                  <Order />
+                </ProtectedRoute>
+              }
+            />
             <Route path="*" element={<Error />} />
           </Routes>
         </Router>
