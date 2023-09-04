@@ -5,13 +5,20 @@ import supabase from "../../service";
 export const getCurrentUser = createAsyncThunk(
   "user/authorizeCurrUser",
   async (_, { dispatch }) => {
-    const { data: session } = await supabase.auth.getSession();
-    if (!session.session) return null;
-
-    const { data: user, error } = await supabase.auth.getUser();
-
-    if (error) throw new Error(error.message);
-    if (user) dispatch(setUser(user));
+    try {
+      dispatch(setLoading(true));
+      const { data: session } = await supabase.auth.getSession();
+      if (!session.session) return null;
+      const { data: user, error } = await supabase.auth.getUser();
+      if (error) throw new Error(error.message);
+      if (user) dispatch(setUser(user));
+      return user;
+    } catch (error) {
+      dispatch(setError(true));
+      throw error;
+    } finally {
+      dispatch(setLoading(false));
+    }
   }
 );
 
@@ -20,7 +27,7 @@ export const userSignOut = createAsyncThunk(
   "user/signOut",
   async (_, { dispatch }) => {
     try {
-      dispatch(setLoading(true)); 
+      dispatch(setLoading(true));
       const { data, error } = await supabase.auth.signOut();
       if (error) {
         dispatch(setError(error));
@@ -29,7 +36,7 @@ export const userSignOut = createAsyncThunk(
       dispatch(setUser(null));
       return data;
     } finally {
-      dispatch(setLoading(false)); 
+      dispatch(setLoading(false));
     }
   }
 );
@@ -77,14 +84,14 @@ export const signIn =
       });
 
       if (error) {
-        dispatch(setError(error.message)); // Dispatch the setError action
+        dispatch(setError(error.message));
       } else {
-        dispatch(setUser(user)); // Dispatch the setUser action
-        dispatch(clearError()); // Dispatch the clearError action
+        dispatch(setUser(user));
+        dispatch(clearError());
       }
     } catch (error) {
-      dispatch(setError(error.message)); // Dispatch the setError action
+      dispatch(setError(error.message));
     } finally {
-      dispatch(setLoading(false)); // Dispatch the setLoading action
+      dispatch(setLoading(false));
     }
   };
