@@ -16,7 +16,7 @@ const AuthenticatedUser = ({ setIsOpenAuth }) => {
   const dispatch = useDispatch();
   if (isLoading) {
     return (
-      <SkeletonTheme baseColor="#ffffff" highlightColor="#00FF00">
+      <SkeletonTheme baseColor="#ffffff" highlightColor="rgb(0, 102, 102)">
         <p>
           <Skeleton />
         </p>
