@@ -39,6 +39,12 @@ export const getCurrentUser = createAsyncThunk(
       const { data: user, error } = await supabase.auth.getUser();
       if (error) throw new Error(error.message);
       if (user) dispatch(setUser(user));
+      if (session.expires_in < 1) dispatch(userSignOut());
+      const currentTime = Math.floor(Date.now() / 1000);
+      if (session.expires_at < currentTime) {
+        dispatch(userSignOut());
+        dispatch(setUser(null));
+      }
       return user;
     } catch (error) {
       dispatch(setError(true));
