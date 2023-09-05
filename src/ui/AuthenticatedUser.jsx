@@ -7,15 +7,21 @@ import UserOptions from "../features/auth/userOptions";
 import SmallLoader from "../ui/SmallLoader";
 import { toast } from "react-hot-toast";
 import { userSignOut } from "../features/auth/authSlice";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 const AuthenticatedUser = ({ setIsOpenAuth }) => {
-  // const { cart } = useSelector((store) => store.cart);
-
   const { user } = useSelector((store) => store.auth);
   const { isLoading } = useSelector((store) => store.auth);
   const { error } = useSelector((store) => store.auth);
   const dispatch = useDispatch();
   if (isLoading) {
-    return <SmallLoader />;
+    return (
+      <SkeletonTheme baseColor="#ffffff" highlightColor="#00FF00">
+        <p>
+          <Skeleton />
+        </p>
+      </SkeletonTheme>
+    );
   }
   if (error) {
     toast.error(error);
@@ -39,7 +45,7 @@ const AuthenticatedUser = ({ setIsOpenAuth }) => {
           <p className="mb-0">
             <BiSolidUser />
           </p>
-          <p>{user.user.email}</p>
+          <p>{user.user.user_metadata.name}</p>
           <UserOptions />
           <p className="text-xl">
             <IoMdArrowDropdown />
