@@ -35,11 +35,13 @@ export const getCurrentUser = createAsyncThunk(
     try {
       dispatch(setLoading(true));
       const { data: session } = await supabase.auth.getSession();
-      if (!session.session) return null;
+      if (!session.session) {
+        dispatch(setUser(null));
+        return null;
+      }
       const { data: user, error } = await supabase.auth.getUser();
       if (error) throw new Error(error.message);
       if (user) dispatch(setUser(user));
-      if (session.expires_in < 1) dispatch(userSignOut());
       const currentTime = Math.floor(Date.now() / 1000);
       if (session.expires_at < currentTime) {
         dispatch(userSignOut());
