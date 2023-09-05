@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const SinglePageHeader = ({ category, name }) => {
   return (
     <div className="border-4 border-double border-greyBorder py-2 mb-14">
-      <div className="flex items-center flex-wrap justify-center md:justify-normal gap-5 section-center">
+      <div className="section-center flex items-center flex-wrap justify-center md:justify-normal gap-5 ">
         <Link to="/" className="cursor-pointer text-darkBlue text-xl">
           <AiFillHome />
         </Link>
