@@ -1,6 +1,33 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import supabase from "../../service";
 
+//sign in user
+export const signIn = createAsyncThunk(
+  "user/signIn",
+  async ({ email, password }, { dispatch }) => {
+    try {
+      dispatch(setLoading(true));
+
+      const { data: user, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) {
+        dispatch(setError(error.message));
+      } else {
+        dispatch(setUser(user));
+        dispatch(clearError());
+      }
+      return user;
+    } catch (error) {
+      throw new Error(error.message);
+    } finally {
+      dispatch(setLoading(false));
+    }
+  }
+);
+
 //get user from session
 export const getCurrentUser = createAsyncThunk(
   "user/authorizeCurrUser",
@@ -22,6 +49,36 @@ export const getCurrentUser = createAsyncThunk(
   }
 );
 
+// create new user
+export const signUpUser = createAsyncThunk(
+  "user/signUp",
+  async ({ email, password, name }, { dispatch }) => {
+    try {
+      dispatch(setLoading(true));
+      const { data: user, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            name,
+          },
+        },
+      });
+      if (error) {
+        dispatch(setError(error.message));
+      } else {
+        dispatch(setUser(user));
+        dispatch(clearError());
+      }
+      return user;
+    } catch (error) {
+      throw new Error(error.message);
+    } finally {
+      dispatch(setLoading(false));
+    }
+  }
+);
+
 //user signout
 export const userSignOut = createAsyncThunk(
   "user/signOut",
@@ -30,7 +87,7 @@ export const userSignOut = createAsyncThunk(
       dispatch(setLoading(true));
       const { data, error } = await supabase.auth.signOut();
       if (error) {
-        dispatch(setError(error));
+        dispatch(setError(error.message));
         throw new Error(error.message);
       }
       dispatch(setUser(null));
@@ -71,27 +128,3 @@ const authSlice = createSlice({
 export const { setUser, setError, setLoading, clearError, signOut } =
   authSlice.actions;
 export default authSlice.reducer;
-
-export const signIn =
-  ({ email, password }) =>
-  async (dispatch) => {
-    try {
-      dispatch(setLoading(true));
-
-      const { data: user, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-
-      if (error) {
-        dispatch(setError(error.message));
-      } else {
-        dispatch(setUser(user));
-        dispatch(clearError());
-      }
-    } catch (error) {
-      dispatch(setError(error.message));
-    } finally {
-      dispatch(setLoading(false));
-    }
-  };

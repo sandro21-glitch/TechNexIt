@@ -40,7 +40,7 @@ const UserAuth = ({ isOpen, setIsOpen }) => {
           {showPage === "login" ? (
             <Login setIsOpen={setIsOpen} />
           ) : (
-            <Register />
+            <Register setIsOpen={setIsOpen} />
           )}
         </div>
       </article>

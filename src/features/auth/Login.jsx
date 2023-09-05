@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { signIn } from "./authSlice";
 
 const Login = ({ setIsOpen }) => {
-  const [email, setEmail] = useState("sandro@mail.ru");
+  const [email, setEmail] = useState("vipsandro11@gmail.com");
   const [password, setPassword] = useState("21Panda1");
 
   const dispatch = useDispatch();

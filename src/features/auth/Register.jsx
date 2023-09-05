@@ -1,8 +1,37 @@
-const Register = () => {
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { signUpUser } from "./authSlice";
+
+const Register = ({ setIsOpen }) => {
+  const [email, setEmail] = useState("vipsandro11@gmail.com");
+  const [password, setPassword] = useState("21Panda1");
+  const [name, setName] = useState("Sandro");
+
+  const dispatch = useDispatch();
+
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    setIsOpen((prevState) => !prevState);
+    dispatch(signUpUser({ email, password, name }));
+  };
+
   return (
     <div>
-      <form>
+      <form onSubmit={handleSignUp}>
         <div className="space-y-3 mt-5">
+          <div className=" flex flex-col">
+            <label htmlFor="email" className="mb-1">
+              სახელი
+            </label>
+            <input
+              type="name"
+              name="name"
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="border p-2 outline-none focus:border-gray-700 border-gray-500"
+            />
+          </div>
           <div className=" flex flex-col">
             <label htmlFor="email" className="mb-1">
               ელ. ფოსტა
@@ -11,6 +40,8 @@ const Register = () => {
               type="email"
               name="email"
               id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="border p-2 outline-none focus:border-gray-700 border-gray-500"
             />
           </div>
@@ -22,6 +53,8 @@ const Register = () => {
               type="password"
               name="password"
               id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="border p-2 outline-none focus:border-gray-700 border-gray-500"
             />
           </div>
