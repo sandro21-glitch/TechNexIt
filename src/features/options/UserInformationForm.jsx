@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-
 const UserInformationForm = ({ fields }) => {
   const { user } = useSelector((state) => state.auth);
+
   return (
     <form className="my-5">
       {fields.map((field, index) => (
