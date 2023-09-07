@@ -1,41 +1,78 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import supabase from "../../service";
 
-export const signIn = createAsyncThunk("user/signIn", async ({ email, password }) => {
-  const { data: user, error } = await supabase.auth.signInWithPassword({ email, password });
-  if (error) throw new Error(error.message);
-  return user;
-});
-
-export const getCurrentUser = createAsyncThunk("user/authorizeCurrUser", async () => {
-  const { data: session } = await supabase.auth.getSession();
-  if (!session.session) {
-    return null;
+export const signIn = createAsyncThunk(
+  "user/signIn",
+  async ({ email, password }) => {
+    const { data: user, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+    if (error) throw new Error(error.message);
+    return user;
   }
-  const { data: user, error } = await supabase.auth.getUser();
-  if (error) throw new Error(error.message);
+);
 
-  const currentTime = Math.floor(Date.now() / 1000);
-  if (session.expires_at < currentTime) {
-    throw new Error("Session has expired");
+export const getCurrentUser = createAsyncThunk(
+  "user/authorizeCurrUser",
+  async () => {
+    const { data: session } = await supabase.auth.getSession();
+    if (!session.session) {
+      return null;
+    }
+    const { data: user, error } = await supabase.auth.getUser();
+    if (error) throw new Error(error.message);
+
+    const currentTime = Math.floor(Date.now() / 1000);
+    if (session.expires_at < currentTime) {
+      throw new Error("Session has expired");
+    }
+
+    return user;
   }
-  
-  return user;
-});
+);
 
-export const signUpUser = createAsyncThunk("user/signUp", async ({ email, password, name }) => {
-  const { data: user, error } = await supabase.auth.signUp({
-    email,
-    password,
-    options: {
-      data: {
-        name,
-      },
-    },
-  });
-  if (error) throw new Error(error.message);
-  return user;
-});
+// Define the signUpUser action
+export const signUpUser = createAsyncThunk(
+  "user/signUp",
+  async ({ email, password, name }) => {
+    try {
+      // Register the user using Supabase
+      const { data: user, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            name,
+          },
+        },
+      });
+
+      if (error) {
+        throw new Error(error.message);
+      }
+
+      // Insert user data into users table
+      const { error: insertError } = await supabase
+        .from("users")
+        .insert([
+          {
+            user_id: user.user.id,
+            email,
+            name,
+          },
+        ])
+        .single();
+      if (insertError) {
+        throw new Error(insertError.message);
+      }
+
+      return user;
+    } catch (error) {
+      throw error;
+    }
+  }
+);
 
 export const userSignOut = createAsyncThunk("user/signOut", async () => {
   const { error } = await supabase.auth.signOut();
