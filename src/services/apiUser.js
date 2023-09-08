@@ -1,32 +1,29 @@
 import supabase from "../service";
-export const fetchUserData = async (id) => {
-  const { data, error } = await supabase
-    .from("users")
-    .select("id, email, name, address, phonenumber")
-    .single()
-    .eq("id", id);
+export const fetchUserData = async (userId) => {
+  if (userId) {
+    const { data, error } = await supabase
+      .from("users")
+      .select("*")
+      .single()
+      .eq("user_id", userId);
 
-  if (error) {
-    throw new Error("Failed to fetch user data");
+    if (error) {
+      throw new Error("Failed to fetch user data");
+    }
+    return data;
   }
-
-  return data;
 };
 
-export const insertUserData = async (userData) => {
-  const { data, error } = await supabase
+export const updateData = async ({ userId, formData }) => {
+  const { error } = await supabase
     .from("users")
-    .insert({
-      email: userData.email,
-      name: userData.name,
-      address: userData.address,
-      number: userData.number,
+    .update({
+      name: formData.name,
+      address: formData.address,
+      number: formData.number,
     })
-    .single();
-
+    .eq("user_id", userId);
   if (error) {
-    throw new Error("Failed to insert data");
+    throw new Error("Failed to update user data");
   }
-
-  return data;
 };
