@@ -7,12 +7,32 @@ import { toast } from "react-hot-toast";
 import { userSignOut } from "../features/auth/authSlice";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { useUser } from "../hooks/useUser";
 const AuthenticatedUser = ({ setIsOpenAuth }) => {
   const { user } = useSelector((store) => store.auth);
-  const { isLoading } = useSelector((store) => store.auth);
-  const { error } = useSelector((store) => store.auth);
+  // const { isLoading } = useSelector((store) => store.auth);
+  // const { error } = useSelector((store) => store.auth);
   const dispatch = useDispatch();
-  if (!user) {
+  const {
+    userData,
+    isLoading: loadUser,
+    isError: loadUserError,
+  } = useUser(user?.user.id);
+
+  if (loadUser) {
+    return (
+      <SkeletonTheme baseColor="#ffffff" highlightColor="rgb(0, 102, 102)">
+        <p>
+          <Skeleton />
+        </p>
+      </SkeletonTheme>
+    );
+  }
+  if (loadUserError) {
+    toast.dismiss();
+    toast.error("error");
+  }
+  if (!userData) {
     return (
       <ul className="flex items-end gap-5 md:mt-2 justify-between lg:justify-normal">
         <li
@@ -27,27 +47,15 @@ const AuthenticatedUser = ({ setIsOpenAuth }) => {
       </ul>
     );
   }
-  if (isLoading) {
-    return (
-      <SkeletonTheme baseColor="#ffffff" highlightColor="rgb(0, 102, 102)">
-        <p>
-          <Skeleton />
-        </p>
-      </SkeletonTheme>
-    );
-  }
-  if (error) {
-    toast.error(error);
-  }
 
   return (
     <ul className="flex items-end gap-5 md:mt-2 justify-between lg:justify-normal">
-      {user && (
+      {userData && (
         <li className="group relative flex items-center gap-1 cursor-pointer text-[1rem] text-black font-medium hover:text-darkBlue transition-colors ease-in duration-150">
           <p className="mb-0">
             <BiSolidUser />
           </p>
-          <p>{user?.user.user_metadata.name}</p>
+          <p>{userData.name}</p>
           <UserOptions />
           <p className="text-xl">
             <IoMdArrowDropdown />
@@ -55,7 +63,7 @@ const AuthenticatedUser = ({ setIsOpenAuth }) => {
         </li>
       )}
 
-      {user && user?.user.role === "authenticated" && (
+      {userData && (
         <li className="flex-center gap-2 cursor-pointer text-[1rem] text-black font-medium hover:text-darkBlue transition-colors ease-in duration-150">
           <p className="font-bold text-black">
             <FiLogOut className="font-extrabold text-black" />
