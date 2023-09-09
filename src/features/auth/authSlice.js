@@ -23,11 +23,6 @@ export const getCurrentUser = createAsyncThunk(
     const { data: user, error } = await supabase.auth.getUser();
     if (error) throw new Error(error.message);
 
-    const currentTime = Math.floor(Date.now() / 1000);
-    if (session.expires_at < currentTime) {
-      throw new Error("Session has expired");
-    }
-
     return user;
   }
 );
