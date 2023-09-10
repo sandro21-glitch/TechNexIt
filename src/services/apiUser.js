@@ -27,3 +27,24 @@ export const updateData = async ({ userId, formData }) => {
     throw new Error("Failed to update user data");
   }
 };
+
+export const resetPassword = async (email) => {
+  const { data, error } = await supabase.auth.resetPasswordForEmail(email);
+  if (error) {
+    throw new Error("Failed to reset password");
+  }
+  return data;
+};
+
+export const newPassword = async (password) => {
+  supabase.auth.onAuthStateChange(async (event, session) => {
+    if (event == "PASSWORD_RECOVERY") {
+      const { data, error } = await supabase.auth.updateUser({
+        password,
+      });
+
+      if (data) alert("Password updated successfully!");
+      if (error) alert("There was an error updating your password.");
+    }
+  });
+};
