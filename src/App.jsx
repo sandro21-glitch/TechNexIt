@@ -14,14 +14,14 @@ import Cart from "./pages/Cart";
 import FixedCart from "./ui/FixedCart";
 import UserAuth from "./features/auth/UserAuth";
 import Order from "./pages/Order";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getCurrentUser } from "./features/auth/authSlice";
-import UserSettings from "./pages/UserSettings";
 import ProtectedRoute from "./ui/ProtectedRoute";
-
+import User from "./pages/User";
+import UserInformation from "./features/options/PersonalInfo/UserInformation";
+import PasswordReset from "./features/options/password/PasswordReset";
 function App() {
   const [isOpenAuth, setIsOpenAuth] = useState(false);
-  const { user } = useSelector((store) => store.auth);
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
@@ -56,13 +56,19 @@ function App() {
               }
             />
             <Route
-              path="/user"
+              // path="/account"
               element={
-                <ProtectedRoute path={"/user"}>
-                  <UserSettings />
+                <ProtectedRoute>
+                  <User />
                 </ProtectedRoute>
               }
-            />
+            >
+              <Route path="/account/user" element={<UserInformation />} />
+              <Route
+                path="/account/passwordReset"
+                element={<PasswordReset />}
+              />
+            </Route>
             <Route path="*" element={<Error />} />
           </Routes>
         </Router>
