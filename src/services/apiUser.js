@@ -48,3 +48,15 @@ export const newPassword = async (password) => {
     }
   });
 };
+
+export const findUserEmail = async (email) => {
+  const { data, error } = await supabase
+    .from("users")
+    .select("email")
+    .eq("email", email);
+
+  if (error) {
+    throw new Error("Failed to fetch user data");
+  }
+  return data;
+};
