@@ -8,10 +8,10 @@ const DataSaveBtn = ({ userId, formData }) => {
     mutationKey: "updateData",
     mutationFn: updateData,
     onSuccess: () => {
-      queryClient.invalidateQueries(["user", userId]);
+      queryClient.invalidateQueries(["users", userId]);
       toast.success("პირადი ინფორმაცია განახლდა");
     },
-    onError: (error) => alert(error.message),
+    onError: (error) => toast.error(error.message),
   });
 
   const handleUpdateData = () => {
