@@ -20,6 +20,7 @@ import ProtectedRoute from "./ui/ProtectedRoute";
 import User from "./pages/User";
 import UserInformation from "./features/options/PersonalInfo/UserInformation";
 import PasswordReset from "./features/options/password/PasswordReset";
+import NewPassword from "./features/options/password/NewPassword";
 function App() {
   const [isOpenAuth, setIsOpenAuth] = useState(false);
   const queryClient = new QueryClient({
@@ -56,7 +57,6 @@ function App() {
               }
             />
             <Route
-              // path="/account"
               element={
                 <ProtectedRoute>
                   <User />
@@ -68,6 +68,7 @@ function App() {
                 path="/account/passwordReset"
                 element={<PasswordReset />}
               />
+              <Route path="/account/newPassword/:token" element={<NewPassword />} />
             </Route>
             <Route path="*" element={<Error />} />
           </Routes>
