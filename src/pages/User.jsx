@@ -8,12 +8,12 @@ const User = () => {
   const { user } = useSelector((store) => store.auth);
   const { userData, isLoading, isError } = useUser(user?.user.id);
   return (
-    <section>
+    <section className="font-rexFontLight">
       <SinglePageHeader
-        category={isLoading ? "" : userData.user_id.slice(0, 5)}
+        category={"ანგარიში"}
         name={isLoading ? "" : userData.name}
       />
-      <article className="flex flex-col md:flex-row items-start section-center gap-5 pb-20">
+      <article className="min-h-[60vh] flex flex-col md:flex-row items-start section-center gap-5 pb-20">
         <div className="w-full md:max-w-[18rem]">
           <UserSettings />
         </div>

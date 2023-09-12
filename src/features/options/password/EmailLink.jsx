@@ -21,18 +21,23 @@ const EmailLink = ({ setEmailLinkComplete }) => {
   };
   return (
     <form onSubmit={handleResetPassword}>
-      <div className="flex flex-col">
-        <label htmlFor="email">შეიყვანეეთ თქვენი ელექტრონული ფოსტა</label>
+      <div className="flex flex-col mt-5">
+        <label htmlFor="mail">შეიყვანეეთ თქვენი ელექტრონული ფოსტა</label>
         <input
-          id="email"
+          id="mail"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           type="email"
           required
-          className="border border-greyBorder p-2 outline-none focus:border-gray-600"
+          className="mb-5 border border-greyBorder p-2 outline-none focus:border-gray-600"
         />
-        <button type="submit">გადასვლა</button>
       </div>
+      <button
+        type="submit"
+        className=" p-2 bg-darkBlue text-white border border-darkBlue hover:text-darkBlue hover:bg-transparent transition-colors ease-in duration-100"
+      >
+        გაგზავნა
+      </button>
     </form>
   );
 };
