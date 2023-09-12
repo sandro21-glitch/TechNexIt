@@ -10,8 +10,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { useUser } from "../hooks/useUser";
 const AuthenticatedUser = ({ setIsOpenAuth }) => {
   const { user } = useSelector((store) => store.auth);
-  // const { isLoading } = useSelector((store) => store.auth);
-  // const { error } = useSelector((store) => store.auth);
+
   const dispatch = useDispatch();
   const {
     userData,
@@ -19,9 +18,19 @@ const AuthenticatedUser = ({ setIsOpenAuth }) => {
     isError: loadUserError,
   } = useUser(user?.user.id);
 
+  const handleUserLogout = () => {
+    dispatch(userSignOut())
+      .then(() => {
+        window.location.reload();
+      })
+      .catch((error) => {
+        toast.error("Logout failed:", error);
+      });
+  };
+
   if (loadUser) {
     return (
-      <SkeletonTheme baseColor="#ffffff" highlightColor="rgb(0, 102, 102)">
+      <SkeletonTheme baseColor="#fff" highlightColor="rgb(0, 102, 102)">
         <p>
           <Skeleton />
         </p>
@@ -68,7 +77,7 @@ const AuthenticatedUser = ({ setIsOpenAuth }) => {
           <p className="font-bold text-black">
             <FiLogOut className="font-extrabold text-black" />
           </p>
-          <button onClick={() => dispatch(userSignOut())}>გამოსვლა</button>
+          <button onClick={handleUserLogout}>გამოსვლა</button>
         </li>
       )}
     </ul>
