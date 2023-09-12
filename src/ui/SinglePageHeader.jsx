@@ -19,7 +19,7 @@ const SinglePageHeader = ({ category, name }) => {
         ) : (
           ""
         )}
-        {name ? user : null</p>}
+        <p>{name ? name : null}</p>
       </div>
     </div>
   );
