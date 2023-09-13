@@ -1,16 +1,49 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const UserSettings = () => {
   return (
     <ul className="border border-greyBorder w-full">
-      <li className="py-2 px-4 w-full border-b border-greyBorder cursor-pointer">
-        <Link to="/account/user">პირადი ინფორმაცია</Link>
+      <li>
+        <NavLink
+          style={({ isActive, isPending }) => {
+            return {
+              fontWeight: isActive ? "bold" : "",
+              color: isPending ? "red" : "black",
+            };
+          }}
+          to="/account/user"
+          className="flex py-2 px-4 w-full border-b border-greyBorder cursor-pointer"
+        >
+          პირადი ინფორმაცია
+        </NavLink>
       </li>
-      <li className="py-2 px-4 w-full border-b border-greyBorder cursor-pointer">
-        <Link to="/account/passwordReset">პაროლის შეცვლა</Link>
+      <li>
+        <NavLink
+          style={({ isActive, isPending }) => {
+            return {
+              fontWeight: isActive ? "bold" : "",
+              color: isPending ? "red" : "black",
+            };
+          }}
+          to="/account/passwordReset"
+          className="flex py-2 px-4 w-full border-b border-greyBorder cursor-pointer"
+        >
+          პაროლის შეცვლა
+        </NavLink>
       </li>
-      <li className="py-2 px-4 w-full border-b border-greyBorder cursor-pointer">
-        <Link to="/cart">კალათა</Link>
+      <li>
+        <NavLink
+          style={({ isActive, isPending }) => {
+            return {
+              fontWeight: isActive ? "bold" : "",
+              color: isPending ? "" : "black",
+            };
+          }}
+          to="/cart"
+          className="flex py-2 px-4 w-full border-b border-greyBorder cursor-pointer"
+        >
+          კალათა
+        </NavLink>
       </li>
       <li className="py-2 px-4 w-full cursor-pointer">შეკვეთები</li>
     </ul>
