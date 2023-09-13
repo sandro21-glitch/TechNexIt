@@ -1,7 +1,8 @@
 import { useState } from "react";
-
+import { isValidEmail } from "../../utils/emailValid";
 import { useDispatch } from "react-redux";
 import { signIn } from "./authSlice";
+import toast from "react-hot-toast";
 
 const Login = ({ setIsOpen }) => {
   const [email, setEmail] = useState("vipsandro11@gmail.com");
@@ -11,6 +12,18 @@ const Login = ({ setIsOpen }) => {
 
   const handleSignIn = (e) => {
     e.preventDefault();
+    // check if email or password is missing
+    if (!email || !password) {
+      toast.error("გთხოვთ შეავსოთ როგორც ელექტრონული ფოსტა, ასევე პაროლი.");
+      return;
+    }
+
+    // check if the email is valid using the emailValid function
+    if (!isValidEmail(email)) {
+      toast.error("Გთხოვთ შეიყვანოთ სწორი ელ - ფოსტის მისამართი.");
+      return;
+    }
+
     setIsOpen((prevState) => !prevState);
     dispatch(signIn({ email, password }));
   };
@@ -36,6 +49,7 @@ const Login = ({ setIsOpen }) => {
             პაროლი
           </label>
           <input
+            minLength={6}
             type="password"
             name="password"
             id="password"
@@ -46,11 +60,17 @@ const Login = ({ setIsOpen }) => {
         </div>
       </div>
       <div className="flex flex-col items-start gap-5 mt-5 font-rexFontLight">
-        <button type="submit" className="bg-yellow-400 p-2 text-white">
-          Login
+        <button
+          type="submit"
+          className="bg-yellow-400 hover:bg-transparent hover:text-yellow-400 border border-yellow-400 p-2 text-white transition-colors ease-in duration-150"
+        >
+          შესვლა
           {/* {!isLoading ? "ავტორიზაცია" : "Loading..."} */}
         </button>
-        <button type="button" className="bg-darkBlue p-2 text-white">
+        <button
+          type="button"
+          className="bg-darkBlue hover:text-darkBlue hover:bg-transparent border border-darkBlue p-2 text-white transition-colors ease-in duration-150"
+        >
           პაროლის აღდგენა
         </button>
       </div>
