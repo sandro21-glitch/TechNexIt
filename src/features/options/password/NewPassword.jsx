@@ -52,30 +52,38 @@ const NewPassword = () => {
 
   return (
     <form onSubmit={handleUpdatePassword}>
-      <div>
-        <div>
-          <label htmlFor="password">New Password</label>
-          <input
-            maxLength={20}
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => setNewPassword(e.target.value)}
-            placeholder="main Password"
-          />
+      <div className=" p-5">
+        <div className="flex flex-col mb-5">
+          <div className="flex flex-col mb-5">
+            <label htmlFor="mainPass">ახალი პაროლი</label>
+            <input
+              maxLength={20}
+              id="mainPass"
+              type="password"
+              value={password}
+              onChange={(e) => setNewPassword(e.target.value)}
+              className="border border-greyBorder focus:outline-none p-2"
+            />
+          </div>
+          <div className="flex flex-col">
+            <label htmlFor="repeatPass">გაიმეორეთ პაროლი</label>
+            <input
+              maxLength={20}
+              id="repeatPass"
+              type="password"
+              value={repeatPassword}
+              onChange={(e) => setRepeatPassword(e.target.value)}
+              className="border border-greyBorder focus:outline-none p-2"
+            />
+          </div>
         </div>
-        <div>
-          <label htmlFor="repeatPass"></label>
-          <input
-            maxLength={20}
-            id="repeatPass"
-            type="password"
-            value={repeatPassword}
-            onChange={(e) => setRepeatPassword(e.target.value)}
-          />
-        </div>
+        <button
+          type="submit"
+          className="border border-darkBlue bg-darkBlue text-white hover:bg-transparent hover:text-darkBlue px-4 py-1"
+        >
+          პაროლის განახლება
+        </button>
       </div>
-      <button type="submit">Submit</button>
     </form>
   );
 };
