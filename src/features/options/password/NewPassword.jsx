@@ -1,18 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { newPassword } from "../../../services/apiUser";
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { userSignOut } from "../../auth/authSlice";
 
 const NewPassword = () => {
+  const dispatch = useDispatch();
   const [password, setNewPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const queryClient = useQueryClient();
+
+  const handleUserLogout = () => {
+    dispatch(userSignOut())
+      .then(() => {
+        window.location.reload();
+      })
+      .catch((error) => {
+        toast.error("Logout failed:", error);
+      });
+  };
   const { mutate: getNewPass } = useMutation({
     mutationFn: newPassword,
     onSuccess: () => {
       queryClient.invalidateQueries("changePassword");
+      toast.success(
+        "Თქვენი პაროლი შეიცვალა. გთხოვთ, შეხვიდეთ ხელახლა ახალი პაროლით თქვენს ანგარიშზე"
+      );
+      setTimeout(() => {
+        handleUserLogout();
+      }, 3000);
     },
     onError: (error) => {
-      alert.error(error);
+      toast.error(error);
     },
   });
 
@@ -22,10 +42,11 @@ const NewPassword = () => {
       if (password === repeatPassword) {
         getNewPass(password);
       } else {
-        alert("password is incorrect");
+        toast.error("password is incorrect");
       }
     } else {
-      alert("pasword is empty");
+      toast.error("pasword is empty");
+      return;
     }
   };
 
