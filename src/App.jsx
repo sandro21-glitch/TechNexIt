@@ -21,6 +21,7 @@ import User from "./pages/User";
 import UserInformation from "./features/options/PersonalInfo/UserInformation";
 import PasswordReset from "./features/options/password/PasswordReset";
 import NewPassword from "./features/options/password/NewPassword";
+import OrderPrepare from "./features/Order/OrderPrepare";
 function App() {
   const [isOpenAuth, setIsOpenAuth] = useState(false);
   const queryClient = new QueryClient({
@@ -49,13 +50,15 @@ function App() {
             <Route path="/:category/:id" element={<SingleProduct />} />
             <Route path="/cart" element={<Cart />} />
             <Route
-              path="/order"
+              // path="/order"
               element={
                 <ProtectedRoute path={"/order"}>
                   <Order />
                 </ProtectedRoute>
               }
-            />
+            >
+              <Route path="/order/OrderPrepare" element={<OrderPrepare />} />
+            </Route>
             <Route
               element={
                 <ProtectedRoute>
@@ -68,7 +71,10 @@ function App() {
                 path="/account/passwordReset"
                 element={<PasswordReset />}
               />
-              <Route path="/account/newPassword/:token" element={<NewPassword />} />
+              <Route
+                path="/account/newPassword/:token"
+                element={<NewPassword />}
+              />
             </Route>
             <Route path="*" element={<Error />} />
           </Routes>
