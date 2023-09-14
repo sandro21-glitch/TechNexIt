@@ -7,7 +7,9 @@ const PasswordReset = () => {
       <h3>პაროლის შეცვლა</h3>
       <hr />
       {emailLinkComplete ? (
-        <p>პაროლის აღსადგენად შეამოწმეთ თქვენი მეილი</p>
+        <p className="mt-5 font-rexFontBold">
+          პაროლის აღსადგენად შეამოწმეთ თქვენი მეილი
+        </p>
       ) : (
         <EmailLink setEmailLinkComplete={setEmailLinkComplete} />
       )}
