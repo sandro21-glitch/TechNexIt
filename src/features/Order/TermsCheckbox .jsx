@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
 const TermsCheckbox = () => {
   const [activeCheckbox, setActiveCheckbox] = useState(false);
 
