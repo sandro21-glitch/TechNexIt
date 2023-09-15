@@ -1,10 +1,17 @@
-import { useSelector } from "react-redux";
-import { useUser } from "../../hooks/useUser";
-const UserOrderInfo = () => {
-  const { user } = useSelector((store) => store.auth);
-  const { userData, isLoading, isError } = useUser(user?.user.id);
-  if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>Error...</p>;
+import { useEffect, useState } from "react";
+
+const UserOrderInfo = ({ userFullName, setUserFullName }) => {
+  const [name, setName] = useState(userFullName.name || "");
+  const [number, setNumber] = useState(userFullName.number || "");
+
+  const handleUpdateUserInfo = () => {
+    setUserFullName({ name, number });
+  };
+
+  useEffect(() => {
+    handleUpdateUserInfo();
+  }, [name, number]);
+
   return (
     <div className="flex items-center justify-between gap-10 mb-7">
       <div className="flex flex-col flex-1">
@@ -14,7 +21,8 @@ const UserOrderInfo = () => {
         <input
           id="name"
           type="text"
-          value={userData.name ? userData.name : ''}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
           className="p-2 focus:outline-none border border-greyBorder"
         />
       </div>
@@ -23,9 +31,10 @@ const UserOrderInfo = () => {
           შემკვეთის ტელეფონი
         </label>
         <input
-          id={userData.number}
+          id="number"
           type="text"
-          value="571909528"
+          value={number}
+          onChange={(e) => setNumber(e.target.value)}
           className="p-2 focus:outline-none border border-greyBorder"
         />
       </div>
