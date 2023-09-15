@@ -1,10 +1,14 @@
 import { useSelector } from "react-redux";
 import { getTotalCartPrice, getTotalDiscount } from "../cart/cartSlice";
 import { formatPrice } from "../../utils/calculateDiscount";
-const OrderSummary = () => {
+import { useEffect } from "react";
+const OrderSummary = ({ setTotalPrice }) => {
   const { cart } = useSelector((store) => store.cart);
   const totalCartPrice = useSelector(getTotalCartPrice);
   const totalDiscount = useSelector(getTotalDiscount);
+  useEffect(() => {
+    setTotalPrice(totalCartPrice);
+  }, [totalCartPrice, setTotalPrice, cart]);
   return (
     <div className="my-7 border border-greyBorder">
       <ul className="flex flex-col">
