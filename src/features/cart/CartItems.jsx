@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import CartTable from "./CartTable";
 
 import CartButtons from "./CartButtons";
+import QuantityDisplay from "../../ui/QuantityDisplay";
 
 const CartItems = () => {
   const { cart } = useSelector((store) => store.cart);
@@ -15,15 +16,7 @@ const CartItems = () => {
     );
   return (
     <section className="section-center pb-10">
-      <div className="border border-greyBorder text-center mb-7">
-        <h4 className="p-10 mb-0 font-rexFontBold tracking-widest">
-          თქვენ კალათაში არის
-          <span className="font-bold mx-2 text-darkBlue font-sans">
-            {cart.length}
-          </span>
-          პროდუქტი
-        </h4>
-      </div>
+      <QuantityDisplay count={cart.length} label="თქვენს კალათაში არის" />
       <CartTable />
       <CartButtons />
     </section>
