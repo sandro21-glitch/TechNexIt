@@ -22,7 +22,7 @@ import UserInformation from "./features/options/PersonalInfo/UserInformation";
 import PasswordReset from "./features/options/password/PasswordReset";
 import NewPassword from "./features/options/password/NewPassword";
 import OrderPrepare from "./features/Order/OrderPrepare";
-import OrderConfirmation from "./features/Order/OrderConfirmation";
+import OrderConfirmation from "./features/Order/PreparedOrders/OrderConfirmation";
 function App() {
   const [isOpenAuth, setIsOpenAuth] = useState(false);
   const queryClient = new QueryClient({
