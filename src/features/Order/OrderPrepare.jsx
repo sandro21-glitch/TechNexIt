@@ -10,8 +10,10 @@ import { useUser } from "../../hooks/useUser";
 import { useMutation } from "react-query";
 import toast from "react-hot-toast";
 import { insertUserOrder } from "../../services/apiOrders";
+import { useNavigate } from "react-router-dom";
 
 const OrderPrepare = () => {
+  const navigate = useNavigate();
   const { user } = useSelector((store) => store.auth);
   const { userData, isLoading, isError } = useUser(user?.user.id);
   const [deliveryMethod, setDelieveryMethod] = useState("მაღაზიიდან გატანა");
@@ -46,9 +48,14 @@ const OrderPrepare = () => {
   useEffect(() => {
     setOrder((prevOrder) => ({
       ...prevOrder,
+      name: userFullName.name,
+      number: userFullName.number,
+      delivery: deliveryMethod,
+      payment: paymentMethod.type,
+      bank: paymentMethod.bank,
       price: totalPrice,
     }));
-  }, [totalPrice]);
+  }, [totalPrice, userFullName, deliveryMethod, paymentMethod]);
 
   const { mutate: userOrder } = useMutation({
     mutationKey: ["submitOrder"],
@@ -64,6 +71,7 @@ const OrderPrepare = () => {
     }
 
     userOrder();
+    navigate("/order/confirmedOrders");
   };
   return (
     <div className="w-full max-w-[50rem] border-2 border-greyBorder p-5">
