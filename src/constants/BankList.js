@@ -2,16 +2,16 @@ export const bankList = [
   {
     id: 1,
     img: "https://itworks.ge/images/payment/installment-bog-logo.svg",
-    name:'bog'
+    name:'საქართველოს ბანკი'
   },
   {
     id: 2,
     img: "https://itworks.ge/images/payment/installment-tbc-logo.svg",
-    name:'tbc'
+    name:'თიბისი ბანკი'
   },
   {
     id: 3,
     img: "https://itworks.ge/images/payment/installment-credo-logo.svg",
-    name:'credo'
+    name:'კრედო ბანკი'
   },
 ];
