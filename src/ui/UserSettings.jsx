@@ -33,19 +33,20 @@ const UserSettings = () => {
       </li>
       <li>
         <NavLink
-          style={({ isActive, isPending }) => {
-            return {
-              fontWeight: isActive ? "bold" : "",
-              color: isPending ? "" : "black",
-            };
-          }}
           to="/cart"
           className="flex py-2 px-4 w-full border-b border-greyBorder cursor-pointer"
         >
           კალათა
         </NavLink>
       </li>
-      <li className="py-2 px-4 w-full cursor-pointer">შეკვეთები</li>
+      <li>
+        <NavLink
+          to="/order/confirmedOrders"
+          className="flex py-2 px-4 w-full cursor-pointer"
+        >
+          შეკვეთები
+        </NavLink>
+      </li>
     </ul>
   );
 };
