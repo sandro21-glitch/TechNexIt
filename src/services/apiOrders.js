@@ -18,3 +18,15 @@ export const insertUserOrder = async (userId, userOrder) => {
     throw error;
   }
 };
+
+export const getUserOrders = async (userId) => {
+  const { data, error } = await supabase
+    .from("orders")
+    .select()
+    .eq("user_id", userId);
+  if (error) {
+    console.error(error.message);
+    throw error;
+  }
+  return data;
+};
