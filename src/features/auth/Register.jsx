@@ -13,7 +13,7 @@ const Register = ({ setIsOpen }) => {
   const [name, setName] = useState("");
   const [showPass, setShowPass] = useState(false);
   const dispatch = useDispatch();
-  
+
   // Use React Query to check if the email already exists in the database
   const { data: checkEmail } = useQuery({
     queryKey: ["users", email],
@@ -26,7 +26,7 @@ const Register = ({ setIsOpen }) => {
       toast.error("Ყველა ველის შევსება აუცილებელია.");
       return;
     }
-    if (checkEmail) {
+    if (checkEmail.length > 0) {
       toast.error(
         "ეს ელფოსტის მისამართი უკვე დაკავშირებულია არსებულ ანგარიშთან. გთხოვთ, გამოიყენოთ სხვა ელფოსტის მისამართი ან სცადოთ შესვლა, თუ ეს თქვენი ანგარიშია"
       );
