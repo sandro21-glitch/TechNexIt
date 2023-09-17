@@ -17,17 +17,7 @@ const PaginatedItems = ({ userOrders, itemsPerPage }) => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        padding: 20,
-        boxSizing: "border-box",
-        width: "100%",
-        height: "100%",
-      }}
-    >
+    <div>
       <OrderPaginate userOrders={currentItems} />
       <ReactPaginate
         activeClassName={"item active "}
@@ -37,13 +27,13 @@ const PaginatedItems = ({ userOrders, itemsPerPage }) => {
         disabledClassName={"disabled-page"}
         marginPagesDisplayed={2}
         nextClassName={"item next "}
-        nextLabel={<GrNext  />}
+        nextLabel={<GrNext />}
         pageClassName={"item pagination-page "}
         onPageChange={handlePageClick}
         pageRangeDisplayed={5}
         pageCount={pageCount}
         previousClassName={"item previous"}
-        previousLabel={<GrPrevious  />}
+        previousLabel={<GrPrevious />}
       />
     </div>
   );
