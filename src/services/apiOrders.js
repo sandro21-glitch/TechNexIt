@@ -1,6 +1,9 @@
 import supabase from "../service";
 const currentDate = new Date();
-const formattedDate = currentDate.toISOString();
+const datePart = currentDate.toISOString().split("T")[0];
+const timePart = currentDate.toTimeString().split(" ")[0];
+
+const formattedDate = `${datePart} ${timePart}`;
 
 export const insertUserOrder = async (userId, userOrder) => {
   const { error } = await supabase.from("orders").insert({
