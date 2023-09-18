@@ -33,3 +33,14 @@ export const getUserOrders = async (userId) => {
   }
   return data;
 };
+
+export const removeOrder = async (orderId) => {
+  const { error } = await supabase
+    .from("orders")
+    .delete()
+    .eq("order_id", orderId);
+  if (error) {
+    console.error(error.message);
+    throw error;
+  }
+};
