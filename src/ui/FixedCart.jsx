@@ -11,7 +11,7 @@ const FixedCart = () => {
     >
       <div className="relative ">
         <BsFillBasket2Fill className="text-yellow-400 text-[3.5rem]" />
-        <div className="flex items-center justify-center font-bold text-[1rem] absolute top-[2px] left-0 right-0 ">
+        <div className="flex items-center justify-center font-bold text-[1rem] text-yellow-500 absolute top-[2px] left-0 right-0 ">
           <p>{cart.length}</p>
         </div>
       </div>
