@@ -1,10 +1,8 @@
-import React from "react";
 import QuantityDisplay from "../../../ui/QuantityDisplay";
 import { useQuery } from "react-query";
 import { getUserOrders } from "../../../services/apiOrders";
 import { useSelector } from "react-redux";
-// import "react-paginate/dist/react-paginate.css";
-import PaginatedItems from "./PaginatedItems";
+import OrderPaginate from "./OrderPaginate";
 const OrderConfirmation = () => {
   const { user } = useSelector((store) => store.auth);
   const {
@@ -12,20 +10,35 @@ const OrderConfirmation = () => {
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ["orders"],
+    queryKey: ["getOrders", user?.user.id],
     queryFn: () => getUserOrders(user?.user.id),
+    staleTime: 0,
   });
-  if (isLoading) return <p>Loading</p>;
-  if (isError) return <p>Error</p>;
+  if (isLoading) return <p>Loading...</p>;
+  if (isError) return <p>Error!</p>;
   return (
     <div className="section-center">
       <QuantityDisplay
         count={userOrders ? userOrders.length : 0}
         label="თქვენ გაქვთ განთავსებული"
       />
-      <div>
-        <PaginatedItems userOrders={userOrders} itemsPerPage={1} />
-      </div>
+      {userOrders.length > 0 ? (
+        <div className="flex flex-col gap-10">
+          {userOrders.map((order, index) => {
+            return (
+              <OrderPaginate
+                key={order.order_id}
+                order={order}
+                index={index + 1}
+              />
+            );
+          })}
+        </div>
+      ) : (
+        <div className="min-h-[20rem] text-center">
+          <h3 className="font-rexFontLight font-bold">შეკვეთები არ გაქვთ</h3>
+        </div>
+      )}
     </div>
   );
 };
