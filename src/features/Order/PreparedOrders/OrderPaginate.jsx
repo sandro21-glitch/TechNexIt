@@ -1,17 +1,12 @@
-import React from "react";
 import OrderInfo from "./OrderInfo";
 import OrderOptions from "./orderOptions/OrderOptions";
 
-const OrderPaginate = ({ userOrders }) => {
+const OrderPaginate = ({ order, index }) => {
   return (
     <div>
-      {userOrders &&
-        userOrders.map((order) => (
-          <div>
-            <OrderInfo order={order} key={order.order_id} />
-            <OrderOptions order={order} />
-          </div>
-        ))}
+      <h3 className="font-rexFontLight">შეკვეთა №{index}</h3>
+      <OrderInfo order={order} />
+      <OrderOptions order={order} />
     </div>
   );
 };
