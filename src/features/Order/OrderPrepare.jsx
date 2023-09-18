@@ -7,7 +7,7 @@ import PlaceOrderBtn from "./PlaceOrderBtn";
 import TermsCheckbox from "./TermsCheckbox ";
 import { useSelector } from "react-redux";
 import { useUser } from "../../hooks/useUser";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import toast from "react-hot-toast";
 import { insertUserOrder } from "../../services/apiOrders";
 import { useNavigate } from "react-router-dom";
@@ -57,9 +57,14 @@ const OrderPrepare = () => {
     }));
   }, [totalPrice, userFullName, deliveryMethod, paymentMethod]);
 
+  const queryClient = useQueryClient();
   const { mutate: userOrder } = useMutation({
-    mutationKey: ["submitOrder"],
+    mutationKey: ["submitOrder", user?.user.id, order],
     mutationFn: () => insertUserOrder(user?.user.id, order),
+    onSuccess: () => {
+      queryClient.invalidateQueries("getOrders");
+    },
+    onError: () => console.log("error"),
   });
 
   const handleSubmitOrder = (e) => {
