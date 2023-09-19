@@ -3,6 +3,7 @@ import { useQuery } from "react-query";
 import { getUserOrders } from "../../../services/apiOrders";
 import { useSelector } from "react-redux";
 import OrderPaginate from "./OrderPaginate";
+import SmallSpinner from "../../../ui/SmallSpinner";
 const OrderConfirmation = () => {
   const { user } = useSelector((store) => store.auth);
   const {
@@ -14,7 +15,7 @@ const OrderConfirmation = () => {
     queryFn: () => getUserOrders(user?.user.id),
     staleTime: 0,
   });
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <SmallSpinner />;
   if (isError) return <p>Error!</p>;
   return (
     <div className="section-center">
