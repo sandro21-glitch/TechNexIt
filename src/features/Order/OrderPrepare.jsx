@@ -86,6 +86,11 @@ const OrderPrepare = () => {
 
     userOrder();
     navigate("/order/confirmedOrders");
+    toast.success(
+      `${
+        userData?.name ? userData.name : ""
+      } თქვენ წარმატებით განათავსეთ შეკვეთა`
+    );
   };
   return (
     <div className="w-full max-w-[50rem] border-2 border-greyBorder p-5">
