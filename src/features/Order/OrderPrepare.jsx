@@ -20,7 +20,7 @@ const OrderPrepare = () => {
   const [termsCheckbox, setTermsCheckbox] = useState(false);
   const [totalPrice, setTotalPrice] = useState(null);
   const [paymentMethod, setPaymentMethod] = useState({
-    type: "გადახდა პლასტიკური ბარათი",
+    type: "გადახდა პლასტიკური ბარათით",
     bank: "საქართველოს ბანკი",
   });
   const [userFullName, setUserFullName] = useState(() => {
@@ -69,7 +69,13 @@ const OrderPrepare = () => {
 
   const handleSubmitOrder = (e) => {
     e.preventDefault();
-    if (!termsCheckbox) return;
+    if (!termsCheckbox) {
+      toast.error(
+        "შეკვეთის განთავსებისთვის სავალდებულოა დაეთანხმოთ საგარანტიო პირობებს"
+      );
+      return;
+    }
+
     if (userFullName.name === "" || userFullName.number === "") {
       toast.error("შეავსეთ ყველა ველი");
       return;
