@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { bankList } from "../../constants/bankList";
 
 const PaymentMethod = ({ setPaymentMethod, paymentMethod }) => {
@@ -7,12 +7,13 @@ const PaymentMethod = ({ setPaymentMethod, paymentMethod }) => {
     const selectedType = e.target.value;
 
     const updatedPaymentMethod =
-      selectedType === "გადახდა პლასტიკური ბარათით"
+      selectedType === "ბარათით გადახდა"
         ? { type: selectedType, bank: "საქართველოს ბანკი" }
-        : { type: selectedType };
+        : { type: selectedType, bank: activeBank };
 
     setPaymentMethod(updatedPaymentMethod);
   };
+
   const handleSelectBank = (name) => {
     setActiveBank(name);
     setPaymentMethod((prevState) => {
@@ -27,7 +28,7 @@ const PaymentMethod = ({ setPaymentMethod, paymentMethod }) => {
         onChange={handleSelectType}
         className="mb-3 border border-greyBorder p-2 focus:outline-none w-full cursor-pointer"
       >
-        <option value="გადახდა პლასტიკური ბარათით">
+        <option value="ბარათით გადახდა">
           გადახდა პლასტიკური ბარათის მეშვეობით (Visa & Mastercard)
         </option>
         <option value="ონლაინ განვადების მეშვეობით">
@@ -35,7 +36,7 @@ const PaymentMethod = ({ setPaymentMethod, paymentMethod }) => {
         </option>
       </select>
       <div>
-        {paymentMethod.type === "გადახდა პლასტიკური ბარათით" ? (
+        {paymentMethod.type === "ბარათით გადახდა" ? (
           <div className="relative max-w-[17rem] min-h-[4rem] p-2 border-2 border-gray-800 hover:border-gray-700 cursor-pointer">
             <img
               src="https://itworks.ge/images/payment/card-bog-logo.svg"
