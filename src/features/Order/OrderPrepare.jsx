@@ -20,7 +20,7 @@ const OrderPrepare = () => {
   const [termsCheckbox, setTermsCheckbox] = useState(false);
   const [totalPrice, setTotalPrice] = useState(null);
   const [paymentMethod, setPaymentMethod] = useState({
-    type: "გადახდა პლასტიკური ბარათით",
+    type: "ბარათით გადახდა",
     bank: "საქართველოს ბანკი",
   });
   const [userFullName, setUserFullName] = useState(() => {
@@ -67,7 +67,7 @@ const OrderPrepare = () => {
     onError: () => console.log("error"),
   });
 
-  const handleSubmitOrder = (e) => {
+  const handleSubmitOrder = async (e) => {
     e.preventDefault();
     if (!termsCheckbox) {
       toast.error(
@@ -75,7 +75,10 @@ const OrderPrepare = () => {
       );
       return;
     }
-
+    if (paymentMethod.bank == null) {
+      toast.error("აირჩიეთ გადახდის მეთოდი");
+      return;
+    }
     if (userFullName.name === "" || userFullName.number === "") {
       toast.error("შეავსეთ ყველა ველი");
       return;
