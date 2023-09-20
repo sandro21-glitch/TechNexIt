@@ -23,6 +23,7 @@ import PasswordReset from "./features/options/password/PasswordReset";
 import NewPassword from "./features/options/password/NewPassword";
 import OrderPrepare from "./features/Order/OrderPrepare";
 import OrderConfirmation from "./features/Order/PreparedOrders/OrderConfirmation";
+import Shop from "./pages/Shop";
 function App() {
   const [isOpenAuth, setIsOpenAuth] = useState(false);
   const queryClient = new QueryClient({
@@ -81,6 +82,7 @@ function App() {
                 element={<NewPassword />}
               />
             </Route>
+            <Route path="/shop" element={<Shop />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </Router>
