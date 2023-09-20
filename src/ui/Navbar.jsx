@@ -10,7 +10,6 @@ const Navbar = ({ setIsOpenAuth }) => {
   const [isOpen, setOpen] = useState(false);
   const { cart } = useSelector((store) => store.cart);
 
-
   return (
     <header className="section-center font-rexFontLight">
       <nav className="py-5 lg:flex-between relative flex flex-col lg:flex-row lg:gap-0 gap-5 ">
@@ -37,7 +36,6 @@ const Navbar = ({ setIsOpenAuth }) => {
                 <li
                   key={list.id}
                   className="flex-center gap-2 flex-row-reverse cursor-pointer text-[1rem] text-black font-medium hover:text-darkBlue transition-colors ease-in duration-150"
-                  // onClick={() => handleAuthPage(list.id)}
                 >
                   <p>{list.name}</p>
                   <p>{list.icon}</p>
