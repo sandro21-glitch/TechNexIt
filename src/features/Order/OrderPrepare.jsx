@@ -67,29 +67,28 @@ const OrderPrepare = () => {
     onError: () => console.log("error"),
   });
 
-  const handleSubmitOrder = async (e) => {
+  const handleSubmitOrder = (e) => {
     e.preventDefault();
-    if (!termsCheckbox) {
-      toast.error(
-        "შეკვეთის განთავსებისთვის სავალდებულოა დაეთანხმოთ საგარანტიო პირობებს"
-      );
+    if (userFullName.name === "" || userFullName.number === "") {
+      toast.error("შეავსეთ ყველა ველი");
       return;
     }
     if (paymentMethod.bank == null) {
       toast.error("აირჩიეთ გადახდის მეთოდი");
       return;
     }
-    if (userFullName.name === "" || userFullName.number === "") {
-      toast.error("შეავსეთ ყველა ველი");
+    if (!termsCheckbox) {
+      toast.error(
+        "შეკვეთის განთავსებისთვის სავალდებულოა დაეთანხმოთ საგარანტიო პირობებს"
+      );
       return;
     }
-
     userOrder();
     navigate("/order/confirmedOrders");
     toast.success(
       `${
         userData?.name ? userData.name : ""
-      } თქვენ წარმატებით განათავსეთ შეკვეთა`
+      }, თქვენ წარმატებით განათავსეთ შეკვეთა`
     );
   };
   return (
