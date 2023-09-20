@@ -49,3 +49,18 @@ export async function filterByCategory(category) {
   }
   return data;
 }
+//filter by category no limit
+export async function filterAllByCategory(category) {
+  let query = supabase.from("products").select("*");
+
+  if (category) {
+    query = query.eq("category", category);
+  }
+  const { data, error } = await query;
+  if (error) {
+    console.error("Error fetching data:", error.message);
+    throw error;
+  }
+
+  return data;
+}
