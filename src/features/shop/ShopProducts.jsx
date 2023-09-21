@@ -2,6 +2,7 @@ import React from "react";
 import SingleShopItem from "./SingleShopItem";
 import { filterAllByCategory } from "../../services/apiProduct";
 import { useQuery } from "react-query";
+import PaginatedItems from "./PaginatedItems";
 
 const ShopProducts = () => {
   const {
@@ -17,11 +18,7 @@ const ShopProducts = () => {
   return (
     <div className="flex-1">
       {/* Products grid */}
-      <ul className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
-        {allProduct.map((product) => {
-          return <SingleShopItem key={product.id} product={product} />;
-        })}
-      </ul>
+      <PaginatedItems itemsPerPage={9} allProducts={allProduct} />
     </div>
   );
 };
