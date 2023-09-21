@@ -22,7 +22,7 @@ const EmailLink = ({ setEmailLinkComplete }) => {
   return (
     <form onSubmit={handleResetPassword}>
       <div className="flex flex-col mt-5">
-        <label htmlFor="mail">შეიყვანეეთ თქვენი ელექტრონული ფოსტა</label>
+        <label htmlFor="mail">შეიყვანეთ თქვენი ელექტრონული ფოსტა</label>
         <input
           id="mail"
           value={email}
