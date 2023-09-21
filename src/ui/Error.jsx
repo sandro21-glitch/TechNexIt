@@ -7,7 +7,7 @@ const Error = () => {
       <p className=" text-[10rem] mb-0">404</p>
       <p className="mb-5">მოთხოვნილი გვერდი ვერ მოიძებნა!</p>
       <Link
-        to={navigate(-1)}
+        to={"/"}
         className="border border-darkBlue p-2 bg-darkBlue text-white hover:text-darkBlue hover:bg-transparent"
       >
         მთავარზე დაბრუნება
