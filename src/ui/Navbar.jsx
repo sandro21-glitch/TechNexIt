@@ -33,12 +33,14 @@ const Navbar = ({ setIsOpenAuth }) => {
           >
             {NavList.map((list) => {
               return (
-                <li
-                  key={list.id}
-                  className="flex-center gap-2 flex-row-reverse cursor-pointer text-[1rem] text-black font-medium hover:text-darkBlue transition-colors ease-in duration-150"
-                >
-                  <p>{list.name}</p>
-                  <p>{list.icon}</p>
+                <li key={list.id}>
+                  <Link
+                    className="flex-center gap-2 flex-row-reverse cursor-pointer text-[1rem] text-black font-medium hover:text-darkBlue transition-colors ease-in duration-150"
+                    to={list.path}
+                  >
+                    <p>{list.name}</p>
+                    <p>{list.icon}</p>
+                  </Link>
                 </li>
               );
             })}
