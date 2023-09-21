@@ -15,7 +15,7 @@ const SingleProductCharacteristics = ({ singleItem }) => {
             <p className="mb-5 font-rexFontLight">
               დეტალური მახასიათებლები იხილეთ ბმულზე
               <span className="ml-2 font-extrabold text-lightBlue">
-                <a href="#link" className="underline">
+                <a href="#" className="underline">
                   ბმულზე
                 </a>
               </span>
