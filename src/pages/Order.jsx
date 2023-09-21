@@ -3,7 +3,7 @@ import SinglePageHeader from "../ui/SinglePageHeader";
 const Order = () => {
   return (
     <section>
-      <SinglePageHeader name="" category="" />
+      <SinglePageHeader name="" category="შეკვეთები" />
       <article className="section-center pb-20 flex items-center justify-center">
         <Outlet />
       </article>
