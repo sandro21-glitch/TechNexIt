@@ -3,7 +3,7 @@ import SingleShopItem from "./SingleShopItem";
 import { useState } from "react";
 import ReactPaginate from "react-paginate";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
-const PaginatedItems = ({ itemsPerPage, allProducts }) => {
+const PaginatedItems = ({ itemsPerPage, allProducts, isGrid }) => {
   const [itemOffset, setItemOffset] = useState(0);
   const endOffset = itemOffset + itemsPerPage;
   const currentProducts = allProducts.slice(itemOffset, endOffset);
@@ -13,12 +13,17 @@ const PaginatedItems = ({ itemsPerPage, allProducts }) => {
     const newOffset = (event.selected * itemsPerPage) % allProducts.length;
     setItemOffset(newOffset);
   };
-
   return (
     <div>
-      <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <ul
+        className={`grid ${
+          isGrid
+            ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+            : "grid-cols-1 gap-10"
+        } `}
+      >
         {currentProducts.map((product) => (
-          <SingleShopItem key={product.id} product={product} />
+          <SingleShopItem key={product.id} product={product} isGrid={isGrid} />
         ))}
       </ul>
       <ReactPaginate
