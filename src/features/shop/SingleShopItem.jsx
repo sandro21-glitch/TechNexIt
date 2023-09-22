@@ -2,28 +2,56 @@ import AddToCartBtn from "../../ui/AddToCartBtn";
 import Price from "../../ui/Price";
 import SinglePageButton from "../../ui/SinglePageButton";
 
-const SingleShopItem = ({ product }) => {
+const SingleShopItem = ({ product, isGrid }) => {
   const { id, name, price, discount, image, amount, category } = product;
   const newCartItem = {
     ...product,
     totalPrice: product.price,
     minAmount: 1,
   };
+  console.log(newCartItem);
   return (
-    <li className="relative group border border-greyBorder cursor-pointer">
-      <div className="max-w-[15rem] min-h-[20rem] flex flex-col items-center justify-between p-4">
+    <li className="relative group border border-greyBorder cursor-pointer shadow-md flex items-center justify-center flex-col">
+      <div
+        className={` flex ${
+          isGrid ? "flex-col justify-between" : "flex-col md:flex-row w-full"
+        } items-center text-center p-4`}
+      >
         <img
           src={image}
           alt={name}
-          className="w-full h-[10rem] group-hover:scale-110 transition-all ease-in duration-200"
+          loading="lazy"
+          className="w-full max-w-[10rem] mb-5 group-hover:scale-110 transition-all ease-in duration-200"
         />
-        <div className="text-center flex flex-col justify-between">
-          <p className="text-[.9rem]">{name}</p>
+        <div
+          className={`${
+            isGrid
+              ? "text-center flex flex-col justify-between "
+              : "text-center md:text-start md:ml-10"
+          }`}
+        >
+          <p className={`${isGrid ? "text-[.9rem]" : "text-[1.5rem]"}`}>
+            {name}
+          </p>
           <Price discount={discount} price={price} />
+          {!isGrid ? (
+            <p className="text-[1rem] font-rexFontLight mb-5">
+              {amount < 1 ? (
+                <span>წინასწარი შეკვეთით</span>
+              ) : (
+                <span>საერთო რაოდენობა: {amount}</span>
+              )}
+            </p>
+          ) : null}
         </div>
       </div>
       {/* single page button */}
-      <div className="hidden border border-t-0 -ml-[.05rem] -mr-[.05rem] pb-2 border-greyBorder overflow-hidden bg-white left-0 right-0 group-hover:flex absolute z-[9999] justify-center">
+      <div
+        className={`${
+          isGrid ? "hidden group-hover:flex" : "flex justify-center static"
+        } border border-t-0 -ml-[.05rem] -mr-[.05rem] pb-2 border-greyBorder bg-white left-0 right-0 -bottom-5
+         absolute z-[9999] justify-center`}
+      >
         <SinglePageButton category={category} id={id} />
       </div>
       {/* add to cart button */}
