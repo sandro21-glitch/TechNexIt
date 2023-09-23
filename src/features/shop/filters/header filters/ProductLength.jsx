@@ -1,6 +1,6 @@
 const ProductLength = ({ allProduct }) => {
   return (
-    <div>{allProduct ? `${allProduct.length} პროდუქტი მოიძებნა` : null}</div>
+    <div>{allProduct ? `ნაპოვნია ${allProduct.length} პროდუქტი` : null}</div>
   );
 };
 
