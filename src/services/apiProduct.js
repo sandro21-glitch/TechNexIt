@@ -50,13 +50,17 @@ export async function filterByCategory(category) {
   return data;
 }
 //filter by category no limit
-export async function filterAllByCategory(category) {
+export async function filterAllByCategory(sortByPriceLowToHigh = true) {
   let query = supabase.from("products").select("*");
 
-  if (category) {
-    query = query.eq("category", category);
+  if (sortByPriceLowToHigh) {
+    query = query.order("price", { ascending: true });
+  } else {
+    query = query.order("price", { ascending: false });
   }
+
   const { data, error } = await query;
+
   if (error) {
     console.error("Error fetching data:", error.message);
     throw error;
