@@ -9,7 +9,6 @@ const SingleShopItem = ({ product, isGrid }) => {
     totalPrice: product.price,
     minAmount: 1,
   };
-  console.log(newCartItem);
   return (
     <li className="relative group border border-greyBorder cursor-pointer shadow-md flex items-center justify-center flex-col">
       <div
