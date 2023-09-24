@@ -5,13 +5,13 @@ import SortByPrice from "./filters/SortByPrice";
 import { useEffect } from "react";
 
 const ShopFilters = ({
+  allProductData,
   setSelectedCategory,
   selectedCategory,
   products,
   setAllProductData,
 }) => {
   const [categories, setCategories] = useState([]);
-
   useEffect(() => {
     if (products && products.length > 0) {
       const uniqueCategories = [
@@ -21,7 +21,7 @@ const ShopFilters = ({
     }
   }, [products]);
   return (
-    <div className="">
+    <div>
       <FilterByName
         selectedCategory={selectedCategory}
         products={products}
@@ -34,9 +34,12 @@ const ShopFilters = ({
         setSelectedCategory={setSelectedCategory}
         setAllProductData={setAllProductData}
       />
-      <p className="font-bold">Discount Filter</p>
       <p className="font-bold">show only available products</p>
-      <SortByPrice />
+      <p className="font-bold">საწყობის ტიპი</p>
+      <SortByPrice
+        setAllProductData={setAllProductData}
+        allProductData={allProductData}
+      />
     </div>
   );
 };
