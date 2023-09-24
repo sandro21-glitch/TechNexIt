@@ -14,9 +14,8 @@ const Shop = () => {
     isLoading,
     isError,
   } = useQuery({
-    queryFn: ["fetchProducts"],
+    queryKey: ["fetchProducts"],
     queryFn: () => filterAllByCategory(),
-    initialData: allProductData,
   });
   useEffect(() => {
     if (products && products.length > 0) {
@@ -47,6 +46,7 @@ const Shop = () => {
             products={products}
             setSelectedCategory={setSelectedCategory}
             selectedCategory={selectedCategory}
+            allProductData={allProductData}
           />
           {/* allProduct */}
           <ShopProducts
