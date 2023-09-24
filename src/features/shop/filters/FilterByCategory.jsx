@@ -15,9 +15,10 @@ const FilterByCategory = ({
     setAllProductData(filteredData);
   };
   return (
-    <div className="flex flex-col gap-5 font-rexFontLight">
+    <div className="flex flex-col gap-5 font-rexFontLight mb-5">
       <div>
         <h6 className="text-[1.1rem] font-bold">კომპიუტერის ნაწილები</h6>
+        <hr />
         <ul>
           {categories.map((category, index) => {
             return (
