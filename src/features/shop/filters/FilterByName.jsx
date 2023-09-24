@@ -7,6 +7,7 @@ const FilterByName = ({
   selectedCategory,
 }) => {
   const [searchProduct, setSearchProduct] = useState("");
+  
   useEffect(() => {
     if (selectedCategory === "") {
       if (searchProduct !== "") {
