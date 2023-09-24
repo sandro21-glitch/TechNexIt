@@ -42,16 +42,16 @@ const CustomDropdown = ({ setItemsPerPage, itemsPerPage }) => {
 
       {isOpen && (
         <div
-          className="left-0 right-0 border border-greyBorder
+          className="left-0 right-0  border border-greyBorder
          absolute mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
         >
-          <div className="py-1 overflow-hidden">
+          <div className="py-1 overflow-hidden ">
             {options.map((option) => (
               <button
                 key={option.id}
                 onClick={() => handleOptionClick(option.value)}
-                className="hover:scale-110 transition-transform ease-in duration-150 block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                role="menuitem"
+                className="hover:scale-110 transition-transform ease-in duration-150 block w-full
+                 text-center  md:text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
               >
                 {option.label}
               </button>
