@@ -1,8 +1,8 @@
 import { useState } from "react";
 import FilterByName from "./filters/FilterByName";
 import FilterByCategory from "./filters/FilterByCategory";
-import SortByPrice from "./filters/SortByPrice";
 import { useEffect } from "react";
+import StoreType from "./StoreType";
 
 const ShopFilters = ({
   allProductData,
@@ -12,6 +12,8 @@ const ShopFilters = ({
   setAllProductData,
 }) => {
   const [categories, setCategories] = useState([]);
+  const [filterType, setFilterType] = useState("all");
+
   useEffect(() => {
     if (products && products.length > 0) {
       const uniqueCategories = [
@@ -28,17 +30,19 @@ const ShopFilters = ({
         setAllProductData={setAllProductData}
       />
       <FilterByCategory
+        filterType={filterType}
         products={products}
         categories={categories}
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
         setAllProductData={setAllProductData}
       />
-      <p className="font-bold">show only available products</p>
-      <p className="font-bold">საწყობის ტიპი</p>
-      <SortByPrice
+      <StoreType
+        filterType={filterType}
+        setFilterType={setFilterType}
+        selectedCategory={selectedCategory}
+        products={products}
         setAllProductData={setAllProductData}
-        allProductData={allProductData}
       />
     </div>
   );
