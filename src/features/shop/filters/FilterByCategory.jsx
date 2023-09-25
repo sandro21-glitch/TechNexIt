@@ -6,14 +6,26 @@ const FilterByCategory = ({
   setAllProductData,
   products,
   selectedCategory,
+  filterType,
 }) => {
   const handleFilterData = (category) => {
     setSelectedCategory(category);
-    const filteredData = products.filter((item) => {
-      return item.category === category;
-    });
+
+    let filteredData = [...products]; 
+
+    if (filterType === "available") {
+      filteredData = filteredData.filter((item) => item.amount > 0);
+    } else if (filterType === "pre") {
+      filteredData = filteredData.filter((item) => item.amount < 1);
+    }
+
+    if (category) {
+      filteredData = filteredData.filter((item) => item.category === category);
+    }
+
     setAllProductData(filteredData);
   };
+
   return (
     <div className="flex flex-col gap-5 font-rexFontLight mb-5">
       <div>
