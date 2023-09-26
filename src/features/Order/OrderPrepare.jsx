@@ -5,14 +5,17 @@ import PaymentMethod from "./PaymentMethod";
 import UserOrderInfo from "./UserOrderInfo";
 import PlaceOrderBtn from "./PlaceOrderBtn";
 import TermsCheckbox from "./TermsCheckbox ";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useUser } from "../../hooks/useUser";
 import { useMutation, useQueryClient } from "react-query";
 import toast from "react-hot-toast";
 import { insertUserOrder } from "../../services/apiOrders";
 import { useNavigate } from "react-router-dom";
+import { clearCart } from "../cart/cartSlice";
 
 const OrderPrepare = () => {
+  const { cart } = useSelector((store) => store.cart);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((store) => store.auth);
   const { userData, isLoading, isError } = useUser(user?.user.id);
@@ -63,6 +66,7 @@ const OrderPrepare = () => {
     mutationFn: () => insertUserOrder(user?.user.id, order),
     onSuccess: () => {
       queryClient.invalidateQueries("getOrders");
+      dispatch(clearCart());
     },
     onError: () => console.log("error"),
   });
@@ -91,6 +95,11 @@ const OrderPrepare = () => {
       }, თქვენ წარმატებით განათავსეთ შეკვეთა`
     );
   };
+  useEffect(() => {
+    if (cart.length === 0) {
+      navigate("/");
+    }
+  }, [cart.length, navigate]);
   return (
     <div className="w-full max-w-[50rem] border-2 border-greyBorder p-5">
       <h2 className="font-rexFontBold text-[1.7rem]">შეკვეთის დეტალები</h2>
