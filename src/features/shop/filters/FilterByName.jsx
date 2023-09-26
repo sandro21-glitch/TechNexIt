@@ -5,36 +5,49 @@ const FilterByName = ({
   setAllProductData,
   products,
   selectedCategory,
+  filterType,
 }) => {
   const [searchProduct, setSearchProduct] = useState("");
-  
+
   useEffect(() => {
+    let filteredProducts = products;
+
+    // Apply the current filter based on filterType
+    if (filterType === "available") {
+      filteredProducts = filteredProducts.filter(
+        (product) => product.amount > 0
+      );
+    } else {
+      filteredProducts = filteredProducts.filter(
+        (product) => product.amount < 1
+      );
+    }
+
+    // Filter products by name
     if (selectedCategory === "") {
       if (searchProduct !== "") {
-        const newProducts = products.filter((product) =>
+        filteredProducts = filteredProducts.filter((product) =>
           product.name.toLowerCase().includes(searchProduct.toLowerCase())
         );
-        setAllProductData(newProducts);
-      } else {
-        setAllProductData(products);
       }
     } else {
-      const categoryAndNameProducts = products.filter(
+      filteredProducts = filteredProducts.filter(
         (product) =>
           product.category.toLowerCase() === selectedCategory.toLowerCase() &&
           product.name.toLowerCase().includes(searchProduct.toLowerCase())
       );
-      setAllProductData(categoryAndNameProducts);
     }
-  }, [searchProduct, selectedCategory, products]);
+
+    setAllProductData(filteredProducts);
+  }, [searchProduct, selectedCategory, filterType, products]);
 
   return (
     <input
       type="text"
-      placeholder="ძებნა"
+      placeholder="ჩაწერეთ ტექსტი..."
       onChange={(e) => setSearchProduct(e.target.value)}
       value={searchProduct}
-      className="font-rexFontLight mb-5 w-full p-2 rounded-md
+      className=" mb-5 w-full p-2 rounded-md
        border border-greyBorder focus:border-gray-600
         transition-all ease-in duration-200 outline-none"
     />
