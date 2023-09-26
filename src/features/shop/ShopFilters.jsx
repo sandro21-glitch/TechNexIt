@@ -2,7 +2,7 @@ import { useState } from "react";
 import FilterByName from "./filters/FilterByName";
 import FilterByCategory from "./filters/FilterByCategory";
 import { useEffect } from "react";
-import StoreType from "./StoreType";
+import StoreType from "./filters/StoreType";
 
 const ShopFilters = ({
   allProductData,
@@ -25,6 +25,7 @@ const ShopFilters = ({
   return (
     <div>
       <FilterByName
+        filterType={filterType}
         selectedCategory={selectedCategory}
         products={products}
         setAllProductData={setAllProductData}
