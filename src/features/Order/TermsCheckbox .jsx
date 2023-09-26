@@ -13,7 +13,7 @@ const TermsCheckbox = ({ termsCheckbox, setTermsCheckbox }) => {
         checked={termsCheckbox}
       />
       <p
-        className="text-black cursor-pointer text-lg"
+        className="text-black cursor-pointer text-[.9rem] md:text-lg"
         onChange={() => setTermsCheckbox((prevState) => !prevState)}
       >
         გავეცანი და ვეთანხმები{" "}
