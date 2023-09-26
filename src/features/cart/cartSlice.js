@@ -27,7 +27,6 @@ const cartSlice = createSlice({
     },
     clearCart(state) {
       state.cart = [];
-      toast.success("თქვენი კალათა გასუფთავდა");
     },
     increaseAmount(state, action) {
       const currProduct = state.cart.find((item) => item.id === action.payload);
