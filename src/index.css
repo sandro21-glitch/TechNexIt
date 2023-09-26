@@ -15,10 +15,6 @@ body {
   line-height: 1.5;
 }
 
-hr {
-  border: none;
-  border-top: 1px solid var(--clr-grey-8);
-}
 h1,
 h2,
 h3,
@@ -86,7 +82,8 @@ h5 {
 
 hr {
   border: none;
-  border-top: 1px solid hsl(210, 31%, 80%);
+  border-top: 1px solid #cacaca;
+  margin: 0 0 0.5rem 0;
 }
 .transitions {
   transition: all ease-in 0.3s;
@@ -211,5 +208,13 @@ hr {
   }
   50% {
     transform: translate(-15px);
+  }
+}
+
+@layer base {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 }
