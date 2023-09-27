@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 
 const FilterByPrice = ({
-  allProductData,
   setAllProductData,
   products,
   selectedCategory,
   filterType,
+  maxPrice,
+  setMaxPrice,
 }) => {
-  const [maxPrice, setMaxPrice] = useState(10000);
-
   const handleMaxPriceChange = (value) => {
     setMaxPrice(value);
   };
