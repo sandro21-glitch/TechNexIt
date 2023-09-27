@@ -14,7 +14,7 @@ const ShopFilters = ({
 }) => {
   const [categories, setCategories] = useState([]);
   const [filterType, setFilterType] = useState("all");
-
+  const [maxPrice, setMaxPrice] = useState(10000);
   useEffect(() => {
     if (products && products.length > 0) {
       const uniqueCategories = [
@@ -33,6 +33,7 @@ const ShopFilters = ({
           setAllProductData={setAllProductData}
         />
         <FilterByCategory
+          maxPrice={maxPrice}
           filterType={filterType}
           products={products}
           categories={categories}
@@ -48,6 +49,8 @@ const ShopFilters = ({
           setAllProductData={setAllProductData}
         />
         <FilterByPrice
+          maxPrice={maxPrice}
+          setMaxPrice={setMaxPrice}
           filterType={filterType}
           selectedCategory={selectedCategory}
           products={products}
