@@ -7,11 +7,12 @@ const FilterByCategory = ({
   products,
   selectedCategory,
   filterType,
+  maxPrice,
 }) => {
   const handleFilterData = (category) => {
     setSelectedCategory(category);
 
-    let filteredData = [...products]; 
+    let filteredData = [...products];
 
     if (filterType === "available") {
       filteredData = filteredData.filter((item) => item.amount > 0);
@@ -20,7 +21,9 @@ const FilterByCategory = ({
     }
 
     if (category) {
-      filteredData = filteredData.filter((item) => item.category === category);
+      filteredData = filteredData.filter(
+        (item) => item.category === category && item.price <= maxPrice
+      );
     }
 
     setAllProductData(filteredData);
