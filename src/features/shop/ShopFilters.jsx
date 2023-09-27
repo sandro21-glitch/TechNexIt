@@ -27,6 +27,7 @@ const ShopFilters = ({
     <div className="relative">
       <div className="md:sticky md:top-[1rem]">
         <FilterByName
+          maxPrice={maxPrice}
           filterType={filterType}
           selectedCategory={selectedCategory}
           products={products}
