@@ -6,6 +6,7 @@ const FilterByName = ({
   products,
   selectedCategory,
   filterType,
+  maxPrice,
 }) => {
   const [searchProduct, setSearchProduct] = useState("");
 
@@ -15,11 +16,11 @@ const FilterByName = ({
     // Apply the current filter based on filterType
     if (filterType === "available") {
       filteredProducts = filteredProducts.filter(
-        (product) => product.amount > 0
+        (product) => product.amount > 0 && product.price <= maxPrice
       );
     } else {
       filteredProducts = filteredProducts.filter(
-        (product) => product.amount < 1
+        (product) => product.amount < 1 && product.price <= maxPrice
       );
     }
 
