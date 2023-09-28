@@ -2,7 +2,7 @@ import { BiSolidUser } from "react-icons/bi";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { FiLogOut } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
-import UserOptions from "../features/auth/userOptions";
+import UserOptions from "../features/auth/UserOptions";
 import { toast } from "react-hot-toast";
 import { userSignOut } from "../features/auth/authSlice";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
