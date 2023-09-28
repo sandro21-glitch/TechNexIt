@@ -1,5 +1,5 @@
 import OfferItem from "./OfferItem";
-import Loading from "../../ui/Loading";
+import SmallSpinner from "../../ui/SmallSpinner";
 import { useQuery } from "react-query";
 import { getPcProducts } from "../../services/apiPc";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
@@ -15,7 +15,7 @@ const Offer = () => {
   });
 
   if (isLoading) {
-    return <Loading />;
+    return <SmallSpinner />;
   }
   if (error) {
     return <p>error</p>;
