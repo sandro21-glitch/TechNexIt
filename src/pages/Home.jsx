@@ -1,6 +1,6 @@
 import DiscountedProducts from "../features/HomePage/DiscountedProducts";
 import Hero from "../features/HomePage/Hero";
-import FullBuildItems from "../features/HomePage/fullBuildItems";
+import FullBuildItems from "../features/HomePage/FullBuildItems";
 import Offer from "../features/HomePage/Offer";
 
 const Home = () => {
