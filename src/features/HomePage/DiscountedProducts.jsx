@@ -2,8 +2,7 @@ import { useQuery } from "react-query";
 import { productsWithDiscount } from "../../services/apiProduct";
 
 import DiscountedList from "./DiscountedList";
-import Loading from "../../ui/Loading";
-
+import SmallSpinner from "../../ui/SmallSpinner";
 export default function DiscountedProducts() {
   const {
     data: filteredProducts,
@@ -15,7 +14,7 @@ export default function DiscountedProducts() {
   });
 
   if (isLoading) {
-    return <Loading />;
+    return <SmallSpinner />;
   }
   if (error) {
     return <p>error</p>;
