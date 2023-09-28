@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import { getSelectedPc } from "../../services/apiPc";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import SelectedPcItem from "./SelectedPcItem";
-import Loading from "../../ui/Loading";
+import SmallSpinner from "../../ui/SmallSpinner";
 // Default theme
 import "@splidejs/splide/css";
 import { options } from "../../utils/splideOptions";
@@ -15,7 +15,7 @@ const SelectedCategoryBuilds = ({ selectedCategory }) => {
     return <p>error</p>;
   }
   if (isLoading) {
-    return <Loading />;
+    return <SmallSpinner />;
   }
 
   return (
