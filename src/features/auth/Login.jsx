@@ -5,8 +5,8 @@ import { signIn } from "./authSlice";
 import toast from "react-hot-toast";
 
 const Login = ({ setIsOpen }) => {
-  const [email, setEmail] = useState("vipsandro11@gmail.com");
-  const [password, setPassword] = useState("21Panda1");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
 
