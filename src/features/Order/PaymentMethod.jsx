@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { bankList } from "../../constants/bankList";
+import { useState } from "react";
+import { bankList } from "../../constants/BankList";
 
 const PaymentMethod = ({ setPaymentMethod, paymentMethod }) => {
   const [activeBank, setActiveBank] = useState(null);
