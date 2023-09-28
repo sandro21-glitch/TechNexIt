@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { fetchUserData } from "../../../services/apiUser";
 import { useEffect, useState } from "react";
 import DataSaveBtn from "../DataSaveBtn";
-import SmallSpinner from "../../../ui/smallSpinner";
+import SmallSpinner from "../../../ui/SmallSpinner";
 const UserInformationForm = ({ fields }) => {
   const { user } = useSelector((state) => state.auth);
   const [formData, setFormData] = useState({
