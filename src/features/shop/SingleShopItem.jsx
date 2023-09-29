@@ -1,7 +1,8 @@
 import AddToCartBtn from "../../ui/AddToCartBtn";
 import Price from "../../ui/Price";
 import SinglePageButton from "../../ui/SinglePageButton";
-
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 const SingleShopItem = ({ product, isGrid }) => {
   const { id, name, price, discount, image, amount, category } = product;
   const newCartItem = {
@@ -16,9 +17,10 @@ const SingleShopItem = ({ product, isGrid }) => {
           isGrid ? "flex-col justify-between" : "flex-col md:flex-row w-full"
         } items-center text-center p-4`}
       >
-        <img
+        <LazyLoadImage
           src={image}
           alt={name}
+          effect="blur"
           loading="lazy"
           className="w-full max-w-[10rem] mb-5 group-hover:scale-110 transition-all ease-in duration-200"
         />
