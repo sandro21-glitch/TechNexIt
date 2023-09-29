@@ -7,18 +7,16 @@ const SingleProductCharacteristics = ({ singleItem }) => {
       <div>
         {category === "სისტემური ბლოკები" ? (
           <div>
-            <p className="mb-5 font-bold font-rexFontLight">სისტემური ბლოკის მახასიათებლები:</p>
+            <p className="mb-5 font-bold font-rexFontLight">
+              სისტემური ბლოკის მახასიათებლები:
+            </p>
             <PcDesctiption singleItem={singleItem} />
           </div>
         ) : (
           <div>
             <p className="mb-5 font-rexFontLight">
               დეტალური მახასიათებლები იხილეთ ბმულზე
-              <span className="ml-2 font-extrabold text-lightBlue">
-                <a href="#" className="underline">
-                  ბმულზე
-                </a>
-              </span>
+              <span className="ml-2 font-extrabold text-lightBlue">ბმულზე</span>
             </p>
             <p className="font-bold uppercase">
               <span>{name}</span>
