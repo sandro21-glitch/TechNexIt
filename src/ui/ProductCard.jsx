@@ -15,6 +15,7 @@ const ProductCard = ({ product }) => {
             alt="alt"
             className="min-h-[200px] max-h-[200px]"
             effect="blur"
+            loading="lazy"
           />
         </div>
       </div>
