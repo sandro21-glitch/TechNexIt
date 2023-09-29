@@ -1,6 +1,8 @@
 import ProductInfo from "../../ui/ProductInfo";
 import SinglePageButton from "../../ui/SinglePageButton";
 import Price from "../../ui/Price";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 const SelectedPcItem = ({ selectedPc }) => {
   const { id, image, name, price, discount, cpu, gpu, ssd, ram, category } =
     selectedPc;
@@ -10,10 +12,11 @@ const SelectedPcItem = ({ selectedPc }) => {
       <div className="flex flex-col items-center px-3 py-3 transition-all ease-in duration-150 ">
         <div className="overflow-hidden mb-5">
           <div className="hover:scale-110 transition-all ease-in duration-300">
-            <img
+            <LazyLoadImage
               loading="lazy"
+              effect="blur"
               src={image}
-              alt=""
+              alt={name}
               className="w-full h-[200px]"
             />
           </div>
