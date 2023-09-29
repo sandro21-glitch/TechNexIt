@@ -68,3 +68,18 @@ export async function filterAllByCategory(sortByPriceLowToHigh = true) {
 
   return data;
 }
+
+//last added products
+export const fetchLatestProducts = async () => {
+  const { data, error } = await supabase
+    .from("products")
+    .select("*")
+    .not("created_at", "is", null)
+    .order("created_at", { ascending: false })
+    .limit(8);
+  if (error) {
+    console.error("Error fetching data:", error.message);
+    throw error;
+  }
+  return data;
+};
