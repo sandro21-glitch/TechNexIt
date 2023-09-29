@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "react-query";
 import { getSinglePc } from "../services/apiPc";
-import Loading from "./Loading";
+import SmallSpinner from "./SmallSpinner";
 import Error from "./Error";
 const PcDesctiption = ({ singleItem }) => {
   const { id } = singleItem;
@@ -11,7 +11,7 @@ const PcDesctiption = ({ singleItem }) => {
   });
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <SmallSpinner />;
   }
   if (error) {
     return <Error />;
