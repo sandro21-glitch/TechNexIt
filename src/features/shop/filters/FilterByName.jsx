@@ -13,7 +13,7 @@ const FilterByName = ({
   useEffect(() => {
     let filteredProducts = products;
 
-    // Apply the current filter based on filterType
+    // current filter based on filterType
     if (filterType === "available") {
       filteredProducts = filteredProducts.filter(
         (product) => product.amount > 0 && product.price <= maxPrice
@@ -24,7 +24,7 @@ const FilterByName = ({
       );
     }
 
-    // Filter products by name
+    // filter products by name
     if (selectedCategory === "") {
       if (searchProduct !== "") {
         filteredProducts = filteredProducts.filter((product) =>
@@ -49,7 +49,7 @@ const FilterByName = ({
       onChange={(e) => setSearchProduct(e.target.value)}
       value={searchProduct}
       className=" mb-5 w-full p-2 rounded-md
-       border border-greyBorder focus:border-gray-600
+       border border-greyBorder focus:border-gray-600 shadow-md
         transition-all ease-in duration-200 outline-none"
     />
   );
