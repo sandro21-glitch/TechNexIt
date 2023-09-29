@@ -13,8 +13,8 @@ const UserOrderInfo = ({ userFullName, setUserFullName }) => {
   }, [name, number]);
 
   return (
-    <div className="flex items-center justify-between gap-10 mb-7">
-      <div className="flex flex-col flex-1">
+    <div className="flex items-center flex-col md:flex-row justify-between gap-10 mb-7">
+      <div className="flex flex-col flex-1 w-full">
         <label htmlFor="name" className="mb-1">
           შემკვეთის სახელი და გვარი
         </label>
@@ -26,7 +26,7 @@ const UserOrderInfo = ({ userFullName, setUserFullName }) => {
           className="p-2 focus:outline-none border border-greyBorder"
         />
       </div>
-      <div className="flex flex-col flex-1">
+      <div className="flex flex-col flex-1 w-full">
         <label htmlFor="number" className="mb-1">
           შემკვეთის ტელეფონი
         </label>
