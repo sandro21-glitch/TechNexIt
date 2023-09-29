@@ -1,16 +1,10 @@
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  decreaseAmount,
-  getProductWithId,
-  increaseAmount,
-  removeItem,
-} from "../features/cart/cartSlice";
+import { useDispatch } from "react-redux";
+import { decreaseAmount, increaseAmount } from "../features/cart/cartSlice";
 
 const Checkout = ({ singleItem }) => {
   const { id, minAmount } = singleItem;
   const dispatch = useDispatch();
-  const checkAmount = useSelector(getProductWithId(id));
 
   return (
     <div className="w-full">
