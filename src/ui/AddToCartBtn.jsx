@@ -23,7 +23,7 @@ const AddToCartBtn = ({ product, shop = false }) => {
       onClick={handleAddItem}
       className="w-auto border p-2 text-white border-transparent bg-veryLightBlue hover:border-veryLightBlue hover:bg-transparent hover:text-veryLightBlue"
     >
-      <div className="flex items-center justify-center gap-2 text-xl">
+      <div className="flex items-center justify-center gap-2 text-sm md:text-xl">
         <BsCartPlus />
         კალათაში დამატება
       </div>
