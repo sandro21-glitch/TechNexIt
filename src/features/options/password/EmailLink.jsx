@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { resetPassword } from "../../../services/apiUser";
+import toast from "react-hot-toast";
 
 const EmailLink = ({ setEmailLinkComplete }) => {
   const [email, setEmail] = useState("");
@@ -11,8 +12,9 @@ const EmailLink = ({ setEmailLinkComplete }) => {
       queryClient.invalidateQueries("resetPassword");
       setEmailLinkComplete(true);
     },
-    onError: () => {
+    onError: (error) => {
       setEmailLinkComplete(false);
+      toast.error(error);
     },
   });
   const handleResetPassword = (e) => {
