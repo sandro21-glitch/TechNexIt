@@ -65,7 +65,6 @@ const Login = ({ setIsOpen }) => {
           className="bg-yellow-400 hover:bg-transparent hover:text-yellow-400 border border-yellow-400 p-2 text-white transition-colors ease-in duration-150"
         >
           შესვლა
-          {/* {!isLoading ? "ავტორიზაცია" : "Loading..."} */}
         </button>
         <button
           type="button"
