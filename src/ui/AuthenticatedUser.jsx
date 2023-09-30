@@ -39,7 +39,7 @@ const AuthenticatedUser = ({ setIsOpenAuth }) => {
   }
   if (loadUserError) {
     toast.dismiss();
-    toast.error("error");
+    toast.error(loadUserError);
   }
   if (!userData) {
     return (
