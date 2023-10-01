@@ -25,7 +25,7 @@ export default [
     id: 4,
     icon: <FaUsersCog />,
     name: "სერვისები",
-    path: "/",
+    path: "/services",
   },
   {
     id: 5,
