@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import PcServices from "./pcServices";
 import LaptopServices from "./LaptopServices";
 import Software from "./Software";
+import PcServices from "./PcServices";
 const servicesList = [
   {
     id: 1,
