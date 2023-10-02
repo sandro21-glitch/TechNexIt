@@ -19,7 +19,6 @@ const FilterByCategory = ({
     } else if (filterType === "pre") {
       filteredData = filteredData.filter((item) => item.amount < 1);
     }
-
     if (category) {
       filteredData = filteredData.filter(
         (item) => item.category === category && item.price <= maxPrice
