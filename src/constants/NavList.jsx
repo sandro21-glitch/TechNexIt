@@ -30,7 +30,7 @@ export default [
   {
     id: 5,
     icon: <BiGitCompare />,
-    name: "შედარება",
+    name: "განვადება",
     path: "/",
   },
 ];
