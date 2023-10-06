@@ -21,16 +21,14 @@ const Hero = () => {
         }}
       >
         <SplideSlide>
-          <div>
-            <img
-              src={heroOne}
-              alt="Image 1"
-              className="relative w-full h-[30vh] md:h-[50vh] object-cover"
-            />
-            <span className="absolute top-5 right-5">
-              <img src={logo} alt="" className="w-32 md:w-52" />
-            </span>
-          </div>
+          <img
+            src={heroOne}
+            alt="Image 1"
+            className="relative w-full h-[30vh] md:h-[50vh] object-cover"
+          />
+          <span className="absolute top-5 right-5">
+            <img src={logo} alt="" className="w-32 md:w-52" />
+          </span>
         </SplideSlide>
         <SplideSlide>
           <img
