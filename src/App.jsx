@@ -1,30 +1,41 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { FacebookProvider } from "react-facebook";
-
-import SingleProduct from "./pages/SingleProduct";
-import Navbar from "./ui/Navbar";
-import Footer from "./ui/Footer";
-import Home from "./pages/Home";
-import Error from "./ui/Error";
-import Cart from "./pages/Cart";
-import FixedCart from "./ui/FixedCart";
-import UserAuth from "./features/auth/UserAuth";
-import Order from "./pages/Order";
 import { useDispatch } from "react-redux";
 import { getCurrentUser } from "./features/auth/authSlice";
 import ProtectedRoute from "./ui/ProtectedRoute";
-import User from "./pages/User";
-import UserInformation from "./features/options/PersonalInfo/UserInformation";
-import PasswordReset from "./features/options/password/PasswordReset";
-import NewPassword from "./features/options/password/NewPassword";
-import OrderPrepare from "./features/Order/OrderPrepare";
-import OrderConfirmation from "./features/Order/PreparedOrders/OrderConfirmation";
-import Shop from "./pages/Shop";
-import Services from "./pages/Services";
+
+import Home from "./pages/Home";
+import Loading from "./ui/Loading";
+// Lazy-loaded components
+const SingleProduct = lazy(() => import("./pages/SingleProduct"));
+const Navbar = lazy(() => import("./ui/Navbar"));
+const Footer = lazy(() => import("./ui/Footer"));
+const Error = lazy(() => import("./ui/Error"));
+const Cart = lazy(() => import("./pages/Cart"));
+const FixedCart = lazy(() => import("./ui/FixedCart"));
+const UserAuth = lazy(() => import("./features/auth/UserAuth"));
+const Order = lazy(() => import("./pages/Order"));
+const User = lazy(() => import("./pages/User"));
+const UserInformation = lazy(() =>
+  import("./features/options/PersonalInfo/UserInformation")
+);
+const PasswordReset = lazy(() =>
+  import("./features/options/password/PasswordReset")
+);
+const NewPassword = lazy(() =>
+  import("./features/options/password/NewPassword")
+);
+const OrderPrepare = lazy(() => import("./features/Order/OrderPrepare"));
+const OrderConfirmation = lazy(() =>
+  import("./features/Order/PreparedOrders/OrderConfirmation")
+);
+const Shop = lazy(() => import("./pages/Shop"));
+const Services = lazy(() => import("./pages/Services"));
+
 function App() {
   const [isOpenAuth, setIsOpenAuth] = useState(false);
   const queryClient = new QueryClient({
@@ -45,48 +56,49 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools initialIsOpen={false} />
         <Router>
-          <Navbar setIsOpenAuth={setIsOpenAuth} />
-          <FixedCart />
-          <UserAuth isOpen={isOpenAuth} setIsOpen={setIsOpenAuth} />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/:category/:id" element={<SingleProduct />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route
-              // path="/order"
-              element={
-                <ProtectedRoute path={"/order"}>
-                  <Order />
-                </ProtectedRoute>
-              }
-            >
-              <Route path="/order/OrderPrepare" element={<OrderPrepare />} />
+          <Suspense fallback={<Loading />}>
+            <Navbar setIsOpenAuth={setIsOpenAuth} />
+            <FixedCart />
+            <UserAuth isOpen={isOpenAuth} setIsOpen={setIsOpenAuth} />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/:category/:id" element={<SingleProduct />} />
+              <Route path="/cart" element={<Cart />} />
               <Route
-                path="/order/confirmedOrders"
-                element={<OrderConfirmation />}
-              />
-            </Route>
-            <Route
-              element={
-                <ProtectedRoute>
-                  <User />
-                </ProtectedRoute>
-              }
-            >
-              <Route path="/account/user" element={<UserInformation />} />
+                element={
+                  <ProtectedRoute path={"/order"}>
+                    <Order />
+                  </ProtectedRoute>
+                }
+              >
+                <Route path="/order/OrderPrepare" element={<OrderPrepare />} />
+                <Route
+                  path="/order/confirmedOrders"
+                  element={<OrderConfirmation />}
+                />
+              </Route>
               <Route
-                path="/account/passwordReset"
-                element={<PasswordReset />}
-              />
-              <Route
-                path="/account/newPassword/:token"
-                element={<NewPassword />}
-              />
-            </Route>
-            <Route path="/shop" element={<Shop />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="*" element={<Error />} />
-          </Routes>
+                element={
+                  <ProtectedRoute>
+                    <User />
+                  </ProtectedRoute>
+                }
+              >
+                <Route path="/account/user" element={<UserInformation />} />
+                <Route
+                  path="/account/passwordReset"
+                  element={<PasswordReset />}
+                />
+                <Route
+                  path="/account/newPassword/:token"
+                  element={<NewPassword />}
+                />
+              </Route>
+              <Route path="/shop" element={<Shop />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="*" element={<Error />} />
+            </Routes>
+          </Suspense>
         </Router>
         <Footer />
         <Toaster
