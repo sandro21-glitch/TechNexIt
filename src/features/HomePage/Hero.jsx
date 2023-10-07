@@ -27,13 +27,14 @@ const Hero = () => {
             className="relative w-full h-[30vh] md:h-[50vh] object-cover"
           />
           <span className="absolute top-5 right-5">
-            <img src={logo} alt="" className="w-32 md:w-52" />
+            <img src={logo} alt="" loading="lazy" className="w-32 md:w-52" />
           </span>
         </SplideSlide>
         <SplideSlide>
           <img
             src={heroTwo}
             alt="Image 2"
+            loading="lazy"
             className="w-full h-[30vh] md:h-[50vh] object-cover"
           />
         </SplideSlide>

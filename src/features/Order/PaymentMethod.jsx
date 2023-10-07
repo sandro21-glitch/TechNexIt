@@ -42,6 +42,7 @@ const PaymentMethod = ({ setPaymentMethod, paymentMethod }) => {
               src="https://itworks.ge/images/payment/card-bog-logo.svg"
               alt="bog logo"
               className="w-full"
+              loading="lazy"
             />
           </div>
         ) : (
@@ -57,7 +58,12 @@ const PaymentMethod = ({ setPaymentMethod, paymentMethod }) => {
                       : "border-2 border-greyBorder"
                   } relative w-full md:max-w-[17rem] min-h-[4rem] p-2  hover:border-gray-800 cursor-pointer`}
                 >
-                  <img src={bank.img} alt="bog logo" className="w-full " />
+                  <img
+                    src={bank.img}
+                    alt="bog logo"
+                    loading="lazy"
+                    className="w-full "
+                  />
                 </li>
               );
             })}
