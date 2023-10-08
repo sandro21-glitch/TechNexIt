@@ -23,7 +23,7 @@ const Hero = () => {
         <SplideSlide>
           <img
             src={heroOne}
-            alt="Image 1"
+            alt="hero 1"
             className="relative w-full h-[30vh] md:h-[50vh] object-cover"
           />
           <span className="absolute top-5 right-5">
@@ -33,7 +33,7 @@ const Hero = () => {
         <SplideSlide>
           <img
             src={heroTwo}
-            alt="Image 2"
+            alt="hero 2"
             loading="lazy"
             className="w-full h-[30vh] md:h-[50vh] object-cover"
           />

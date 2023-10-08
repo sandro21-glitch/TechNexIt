@@ -7,7 +7,7 @@ const Checkout = ({ singleItem }) => {
   const dispatch = useDispatch();
 
   return (
-    <div className="w-full">
+    <div className="w-full min-w-[7rem]">
       <div className="w-full flex items-center justify-between  border border-greyBorder p-2 ">
         <button onClick={() => dispatch(decreaseAmount(id))}>
           <AiOutlineMinus />
