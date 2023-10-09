@@ -29,7 +29,7 @@ const OrderInfo = ({ order }) => {
         </div>
       </li>
       <li className="p-2 border-b border-greyBorder">
-        <div className="flex justify-between">
+        <div className="flex justify-between gap-1">
           <span className="font-rexFontLight font-bold">
             შემკვეთის ტელეოფნი
           </span>
@@ -45,7 +45,7 @@ const OrderInfo = ({ order }) => {
         </div>
       </li>
       <li className="p-2 border-b border-greyBorder">
-        <div className="flex justify-between">
+        <div className="flex justify-between gap-1">
           <span className="font-rexFontLight font-bold">
             შეკვეთის ღირებულება
           </span>
@@ -53,21 +53,21 @@ const OrderInfo = ({ order }) => {
         </div>
       </li>
       <li className="p-2 border-b border-greyBorder">
-        <div className="flex justify-between">
+        <div className="flex justify-between gap-1">
           <span className="font-rexFontLight font-bold">მიწოდების მეთოდი</span>
-          <span>{delivery_method}</span>
+          <span className="text-end">{delivery_method}</span>
         </div>
       </li>
       <li className="p-2 border-b border-greyBorder">
-        <div className="flex justify-between">
+        <div className="flex justify-between gap-1">
           <span className="font-rexFontLight font-bold">გადახდის მეთოდი</span>
-          <span>
+          <span className="text-end">
             {`${bank}ს`} {payment_method}
           </span>
         </div>
       </li>
       <li className="p-2">
-        <div className="flex justify-between">
+        <div className="flex justify-between gap-1">
           <span className="font-rexFontLight font-bold">შეკვეთის სტატუსი</span>
           <span>დადასტურების მოლოდინში</span>
         </div>
