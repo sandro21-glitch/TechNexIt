@@ -24,8 +24,18 @@ const Login = ({ setIsOpen }) => {
       return;
     }
 
-    setIsOpen((prevState) => !prevState);
-    dispatch(signIn({ email, password }));
+    dispatch(signIn({ email, password }))
+      .then((response) => {
+        if (response.error) {
+          toast.error("ელ-ფოსტა ან პაროლი არასწორია.");
+        } else {
+          setIsOpen((prevState) => !prevState);
+        }
+      })
+      .catch((error) => {
+        toast.error("An error occurred during sign-in.");
+        console.error(error);
+      });
   };
 
   return (
