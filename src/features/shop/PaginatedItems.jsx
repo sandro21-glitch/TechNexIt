@@ -47,8 +47,8 @@ const PaginatedItems = ({
         previousLabel={<GrFormPrevious className="text-2xl" />}
         containerClassName="flex justify-start items-center font-rexFontLight"
         pageClassName="mx-2 w-7 h-7 border flex items-center justify-center"
-        previousLinkClassName="border p-2 rounded hover:bg-gray-200"
-        nextLinkClassName="border p-2 rounded hover:bg-gray-200"
+        previousLinkClassName="mt-2 rounded hover:bg-gray-200"
+        nextLinkClassName="mt-2 rounded hover:bg-gray-200"
         activeClassName="bg-veryLightBlue text-white "
       />
     </div>
