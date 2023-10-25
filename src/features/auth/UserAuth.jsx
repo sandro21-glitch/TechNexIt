@@ -1,10 +1,10 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Login from "./Login";
 import Register from "./Register";
 
 const UserAuth = ({ isOpen, setIsOpen }) => {
   const [showPage, setShowPage] = useState("login");
-  
+
   const handleClick = (event) => {
     const isArticleClick = event.target.closest("article");
 
