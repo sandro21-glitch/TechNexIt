@@ -3,10 +3,10 @@ import SinglePageHeader from "../ui/SinglePageHeader";
 import CartItems from "../features/cart/CartItems";
 const Cart = () => {
   return (
-    <div>
+    <section>
       <SinglePageHeader category={"კალათა"} />
       <CartItems />
-    </div>
+    </section>
   );
 };
 
