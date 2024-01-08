@@ -45,7 +45,7 @@ const PaginatedItems = ({
         pageCount={pageCount}
         forcePage={currentPage} // Set the current page using forcePage
         previousLabel={<GrFormPrevious className="text-2xl" />}
-        containerClassName="flex justify-start items-center font-rexFontLight"
+        containerClassName="flex justify-start items-center font-rexFontLight mt-5"
         pageClassName="mx-2 w-7 h-7 border flex items-center justify-center"
         previousLinkClassName="mt-2 rounded hover:bg-gray-200"
         nextLinkClassName="mt-2 rounded hover:bg-gray-200"
