@@ -1,4 +1,4 @@
-import supabase from "../service";
+ import supabase from "../service";
 export const fetchUserData = async (userId) => {
   if (userId) {
     const { data, error } = await supabase
